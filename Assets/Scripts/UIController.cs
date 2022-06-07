@@ -10,14 +10,14 @@ public class UIController : MonoBehaviour
     private void Awake()
     {
         // Singleton:
-        if (!instance)
+        if (instance == null)
+        {
             instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
 
         else
-        {
-            Destroy(instance);
-            instance = this;
-        }
+            Destroy(gameObject);
     }
 
     public void UpdateHealth(int currentHealth, int maxHealth)

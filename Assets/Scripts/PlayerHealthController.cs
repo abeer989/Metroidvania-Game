@@ -7,6 +7,9 @@ public class PlayerHealthController : MonoBehaviour
     [SerializeField] SpriteRenderer[] playerSprites;
 
     [Space]
+    [SerializeField] GameObject playerDeathFX;
+
+    [Space]
     [SerializeField] int maxHealth;
     [SerializeField] float invTime;
     [SerializeField] float flashTime;
@@ -15,17 +18,21 @@ public class PlayerHealthController : MonoBehaviour
     float flashCounter;
     int health;
 
+    public int Health { get { return health; } }    
+    
+    public int MaxHealth { get { return maxHealth; } }
+
     private void Awake()
     {
         // Singleton:
-        if (!instance)
+        if (instance == null)
+        {
             instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
 
         else
-        {
-            Destroy(instance);
-            instance = this;
-        }
+            Destroy(gameObject);
     }
 
     private void Start()
@@ -51,11 +58,13 @@ public class PlayerHealthController : MonoBehaviour
                 flashCounter = flashTime;
             }
 
-            // make sure that when that at the end, the sprites are surely enabled:
+            // make sure that at the end, the sprites are surely enabled:
             if (invCounter <= 0)
             {
                 foreach (SpriteRenderer sr in playerSprites)
                     sr.enabled = true;
+
+                flashCounter = 0;
             }
         }
     }
@@ -72,12 +81,32 @@ public class PlayerHealthController : MonoBehaviour
             if (health <= 0)
             {
                 health = 0;
-                gameObject.SetActive(false);
+
+                if (playerDeathFX)
+                    Instantiate(playerDeathFX, transform.position, Quaternion.identity); 
+
+                RespawnController.instance.CallRespawnCR();
             }
 
             else
                 // when the player is hit once, set the inv timer to max value:
                 invCounter = invTime; 
         }
+    }
+
+    public void RefillHealth()
+    {
+        health = maxHealth;
+        UIController.instance.UpdateHealth(currentHealth: health, maxHealth: maxHealth);
+    }
+
+    public void HealPlayer(int healAmount)
+    {
+        health += healAmount;
+
+        if (health >= maxHealth)
+            health = maxHealth;
+
+        UIController.instance.UpdateHealth(currentHealth: health, maxHealth: maxHealth);
     }
 }
