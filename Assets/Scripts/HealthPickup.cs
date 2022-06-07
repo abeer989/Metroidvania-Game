@@ -9,22 +9,17 @@ public class HealthPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerHealthController playerHealthController = other.GetComponent<PlayerHealthController>();
+            PlayerHealthController.instance.HealPlayer(healAmount);
 
-            if (playerHealthController && playerHealthController.Health < playerHealthController.MaxHealth)
-            {
-                PlayerHealthController.instance.HealPlayer(healAmount);
+            // detach the parent canvas from ITS parent (the pickup object) or it'll get desroyed with it:
+            healthText.transform.parent.SetParent(null);
+            healthText.transform.parent.position = transform.position; // but keep the transform in place (the PU object's pos.)
 
-                // detach the parent canvas from ITS parent (the pickup object) or it'll get desroyed with it:
-                healthText.transform.parent.SetParent(null);
-                healthText.transform.parent.position = transform.position; // but keep the transform in place (the PU object's pos.)
+            // set display msg for powerup:
+            healthText.gameObject.SetActive(true);
 
-                // set display msg for powerup:
-                healthText.gameObject.SetActive(true);
-
-                Destroy(gameObject);
-                Destroy(healthText.transform.parent.gameObject, 1); 
-            }
+            Destroy(gameObject);
+            Destroy(healthText.transform.parent.gameObject, 1);
         }
     }
 }
