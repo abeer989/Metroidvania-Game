@@ -18,6 +18,7 @@ public class PlayerHealthController : MonoBehaviour
     float flashCounter;
     int health;
 
+    // Public properties:
     public int Health { get { return health; } }    
     
     public int MaxHealth { get { return maxHealth; } }
