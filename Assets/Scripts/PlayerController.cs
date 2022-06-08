@@ -62,6 +62,11 @@ public class PlayerController : MonoBehaviour
         get { return standingSpriteAnimator; }
     }
 
+    public Rigidbody2D RigidBody
+    {
+        get { return RB; }
+    }
+
     private void OnEnable()
     {
         canMove = true;
