@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class UIController : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class UIController : MonoBehaviour
 
     [SerializeField] Slider healthBar;
     [SerializeField] Image fadeScreen;
+    [SerializeField] TMPro.TMP_Text checkpointText;
     
     [SerializeField] float fadeSpeed;
 
@@ -70,5 +72,14 @@ public class UIController : MonoBehaviour
     {
         fadingFromBlack = true;
         fadingToBlack = false;
+    }
+
+    public void CallShowCheckpointTextCR() => StartCoroutine(ShowCheckpointTextCR());
+
+    IEnumerator ShowCheckpointTextCR()
+    {
+        checkpointText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        checkpointText.gameObject.SetActive(false);
     }
 }

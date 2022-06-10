@@ -9,18 +9,21 @@ public class BulletController : MonoBehaviour
     [SerializeField] GameObject impactFX;
     [SerializeField] int damageDone;
 
-    void Update() =>  RB.velocity = moveDir * bulletSpeed;
+    void Update() => RB.velocity = moveDir * bulletSpeed;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
             other.GetComponent<EnemyHealthController>().DamageEnemy(damage: damageDone);
 
+        else if (other.CompareTag("BOSS"))
+            BossHealthController.instance.TakeDamage(damage: damageDone);
+
         if (impactFX)
-            Instantiate(impactFX, transform.position, Quaternion.identity); 
+            Instantiate(impactFX, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
     }
 
-    private void OnBecameInvisible() =>  Destroy(gameObject);
+    private void OnBecameInvisible() => Destroy(gameObject);
 }

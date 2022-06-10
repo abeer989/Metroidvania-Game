@@ -68,6 +68,12 @@ public class PlayerHealthController : MonoBehaviour
                 flashCounter = 0;
             }
         }
+
+        if (transform.position.y < -15)
+        {
+            TakeDamage(2);
+            RespawnController.instance.CallRespawnCR(_refillHealth: false);
+        }
     }
 
     public void TakeDamage(int damage)

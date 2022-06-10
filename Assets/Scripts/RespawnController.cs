@@ -32,12 +32,12 @@ public class RespawnController : MonoBehaviour
 
     public void SetSpawnPoint(Vector3 newSpawnPoint) => respawnPoint = newSpawnPoint;
 
-    public void CallRespawnCR() => StartCoroutine(RespawnCR());
+    public void CallRespawnCR(bool _refillHealth = true) => StartCoroutine(RespawnCR(refillHeath: _refillHealth));
 
     // the coroutine responsible for player respawn. The player will get deactivated
     // and then respawn at the location that they started from, with everything being reset to its
     // initial state (dead enemies, broken obstacles, etc.) and full health.
-    IEnumerator RespawnCR()
+    IEnumerator RespawnCR(bool refillHeath = true)
     {
         player.SetActive(false);
 
@@ -45,7 +45,9 @@ public class RespawnController : MonoBehaviour
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         player.transform.position = respawnPoint;
-        PlayerHealthController.instance.RefillHealth();
+
+        if (refillHeath)
+            PlayerHealthController.instance.RefillHealth(); 
 
         player.SetActive(true);
     }

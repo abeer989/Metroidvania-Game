@@ -66,7 +66,7 @@ MonoBehaviour:
   firePoint: {fileID: 5693718992606104207}
   bombPoint: {fileID: 5693718993158661900}
   moveSpeed: 15
-  jumpForce: 20
+  jumpForce: 21
   dashSpeed: 50
   dashTime: 0.2
   afterImageLifeTime: 0.5
@@ -107,10 +107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45ff724b7a0f664d9e05441c1fde8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doubleJumpUnlocked: 1
-  dashUnlocked: 1
-  ballModeUnlocked: 1
-  dropBombsUnlocked: 1
+  doubleJumpUnlocked: 0
+  dashUnlocked: 0
+  ballModeUnlocked: 0
+  dropBombsUnlocked: 0
 --- !u!50 &5693718991320861116
 Rigidbody2D:
   serializedVersion: 4
@@ -142,7 +142,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5693718991898353365}
   - component: {fileID: 5693718991898353367}
-  - component: {fileID: 5693718991898353366}
+  - component: {fileID: 2123265572}
+  - component: {fileID: 8891092397951166430}
   - component: {fileID: 5693718991898353368}
   m_Layer: 8
   m_Name: Standing
@@ -218,7 +219,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &5693718991898353366
+--- !u!61 &2123265572
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5693718991898353364}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.013618469, y: -0.2607956}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 5}
+    newSize: {x: 5, y: 5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6702423, y: 2.507165}
+  m_EdgeRadius: 0
+--- !u!70 &8891092397951166430
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -227,12 +254,12 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 5693718991898353364}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 18d737018d6da3b428cea5caf3726461, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.25494623}
-  m_Size: {x: 0.89, y: 2.4669876}
+  m_Offset: {x: 0, y: -0.23414552}
+  m_Size: {x: 0.74, y: 2.5417087}
   m_Direction: 0
 --- !u!95 &5693718991898353368
 Animator:
