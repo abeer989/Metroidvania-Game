@@ -1,15 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
     public static UIController instance;
 
+    public bool isGamePaused;
+
+    [SerializeField] int mainMenuSceneIndex;
+
+    [Space]
+    [SerializeField] GameObject pauseScreen;
     [SerializeField] Slider healthBar;
     [SerializeField] Image fadeScreen;
     [SerializeField] TMPro.TMP_Text checkpointText;
     
+    [Space]
     [SerializeField] float fadeSpeed;
 
     bool fadingToBlack;
@@ -26,6 +34,8 @@ public class UIController : MonoBehaviour
 
         else
             Destroy(gameObject);
+
+        Time.timeScale = 1;
     }
 
     private void Update()
@@ -52,6 +62,28 @@ public class UIController : MonoBehaviour
 
             if (fadeScreen.color.a == 0)
                 fadingFromBlack = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+            PauseUnpause();
+    }
+
+    public void MainMenu() => SceneManager.LoadScene(mainMenuSceneIndex);
+
+    public void PauseUnpause()
+    {
+        if (!pauseScreen.activeSelf)
+        {
+            Time.timeScale = 0;
+            pauseScreen.SetActive(true);
+            isGamePaused = true;
+        }
+
+        else
+        {
+            Time.timeScale = 1;
+            pauseScreen.SetActive(false);
+            isGamePaused = false;
         }
     }
 

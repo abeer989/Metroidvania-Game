@@ -16,9 +16,9 @@ public class MovingPlatform : MonoBehaviour
 
     private void OnEnable()
     {
+        waitCounter = waitTime;
         currentTargetedPointIndex = 0;
         movePoints[0].transform.parent.SetParent(null);
-        waitCounter = waitTime;
     }
 
     private void Update()
