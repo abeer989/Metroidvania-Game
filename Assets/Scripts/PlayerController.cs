@@ -94,6 +94,9 @@ public class PlayerController : MonoBehaviour
                     {
                         dashCounter = dashTime;
                         ShowAfterImage();
+
+                        // dash SFX:
+                        AudioManager.instance.PlaySFX(sfxIndex: 7, adjust: true);
                     }
                 }
 
@@ -136,19 +139,27 @@ public class PlayerController : MonoBehaviour
                 {
                     // if the player is on the ground, they can double jump:
                     if (isOnGround)
+                    {
                         canDoubleJump = true;
+
+                        // jump SFX:
+                        AudioManager.instance.PlaySFX(sfxIndex: 12, adjust: true);
+                    }
 
                     // but not in the air or they'll keep jumping infinitely:
                     else
                     {
                         canDoubleJump = false;
                         standingSpriteAnimator.SetTrigger("doubleJump");
+
+                        // DJ SFX:
+                        AudioManager.instance.PlaySFX(sfxIndex: 9, adjust: true);
                     }
 
                     RB.velocity = new Vector2(RB.velocity.x, jumpForce);
                 }
 
-                // ===================================== BALLSTANDING MODE =====================================:
+                // ===================================== BALL/STANDING MODE =====================================:
                 if (!ball.activeSelf)
                 {
                     float yMovement = Input.GetAxisRaw("Vertical");
@@ -162,6 +173,10 @@ public class PlayerController : MonoBehaviour
                             // turn to ball...
                             ball.SetActive(true);
                             standing.SetActive(false);
+
+                            // ball SFX:
+                            // pickup SFX:
+                            AudioManager.instance.PlaySFX(sfxIndex: 6);
                         }
                     }
 
@@ -183,6 +198,9 @@ public class PlayerController : MonoBehaviour
                             // stand back up...
                             ball.SetActive(false);
                             standing.SetActive(true);
+
+                            // stand SFX:
+                            AudioManager.instance.PlaySFX(sfxIndex: 10);
                         }
                     }
 
@@ -236,12 +254,21 @@ public class PlayerController : MonoBehaviour
                 {
                     // the bullet is going to be flipped WRT to the player's dir., as well:
                     Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).moveDir = new Vector2(transform.localScale.x, 0);
+
+                    // bullet SFX:
+                    AudioManager.instance.PlaySFX(sfxIndex: 14, adjust: true);
+
                     standingSpriteAnimator.SetTrigger("shotFired");
                 }
 
                 // if the player's in ball mode, the LMB will drop bombs:
                 else if (ball.activeSelf && playerAbilityTracker.dropBombsUnlocked)
+                {
                     Instantiate(bombPrefab, bombPoint.position, bombPoint.rotation);
+
+                    // mine drop SFX:
+                    AudioManager.instance.PlaySFX(sfxIndex: 13, adjust: true);
+                }
             }
             #endregion 
         }

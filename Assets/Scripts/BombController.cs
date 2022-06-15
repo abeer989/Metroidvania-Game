@@ -18,6 +18,8 @@ public class BombController : MonoBehaviour
             if (explosionFX)
                 Instantiate(explosionFX, transform.position, transform.rotation);
 
+            AudioManager.instance.PlaySFX(sfxIndex: 4, adjust: true);
+
             Destroy(gameObject);
 
             // get every destructible in the blast radius in an array:
@@ -41,6 +43,9 @@ public class BombController : MonoBehaviour
 
                     if (enemyHealthController)
                         enemyHealthController.DamageEnemy(enemyDamageAmount);
+
+                    if (e.name.ToLower().Contains("boss"))
+                        BossHealthController.instance.TakeDamage(enemyDamageAmount);
                 }
             }
         }

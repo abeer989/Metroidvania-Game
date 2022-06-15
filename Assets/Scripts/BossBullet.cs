@@ -18,6 +18,9 @@ public class BossBullet : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = targetRotation;
+
+        // boss shot sound:
+        AudioManager.instance.PlaySFX(sfxIndex: 2, adjust: true);
     }
 
     private void Update() => RB.velocity = -transform.right * moveSpeed;
@@ -31,5 +34,8 @@ public class BossBullet : MonoBehaviour
             Instantiate(impactFX, transform.position, transform.rotation); 
 
         Destroy(gameObject);
+
+        // bullet impact sound:
+        AudioManager.instance.PlaySFX(sfxIndex: 3, adjust: true);
     }
 }

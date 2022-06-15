@@ -16,7 +16,10 @@ public class EnemyHealthController : MonoBehaviour
         if (health <= 0)
         {
             if (deathFX)
-                Instantiate(original: deathFX, position: gameObject.transform.position, rotation: Quaternion.identity); 
+                Instantiate(original: deathFX, position: gameObject.transform.position, rotation: Quaternion.identity);
+
+            // enemy explode sound:
+            AudioManager.instance.PlaySFX(sfxIndex: 4);
 
             Destroy(gameObject);
         }

@@ -56,16 +56,24 @@ public class DoorController : MonoBehaviour
         // freeze the animator, so whatever the last frame is, the player gets sucked into the door with that:
         player.StandingSpriteAnimator.enabled = false;
 
+        // fade to black:
         UIController.instance.SetFadeToBlack();
 
         yield return new WaitForSeconds(1.5f);
 
+        // set spawn point:
         RespawnController.instance.SetSpawnPoint(exitPoint.position);
         player.CanMove = true;
         player.StandingSpriteAnimator.enabled = true;
         SceneManager.LoadScene(sceneBuildIndex: sceneToLoadIndex);
-
+        
+        // fade back from black:
         UIController.instance.SetFadeFromBlack();
+
+        // save functionality...
+        // saving what level the player entered last and at what position:
+        PlayerPrefs.SetInt("continue_level_index", sceneToLoadIndex); // saving the level to load
+        PlayerPrefs.SetString("continue_position", exitPoint.position.ToString());
 
         yield break;
     }

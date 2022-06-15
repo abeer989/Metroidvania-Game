@@ -41,4 +41,15 @@ public class AudioManager : MonoBehaviour
         music.ForEach(a => a.Stop());
         music[2].Play(); // boss music on 2nd index
     }
+
+    public void PlaySFX(int sfxIndex, bool adjust = false)
+    {
+        if (adjust)
+            SFX[sfxIndex].pitch = Random.Range(1, 1.2f); 
+
+        if (SFX[sfxIndex].isPlaying)
+            SFX[sfxIndex].Stop();
+
+        SFX[sfxIndex].Play();
+    }
 }

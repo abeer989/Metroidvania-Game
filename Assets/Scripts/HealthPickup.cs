@@ -14,6 +14,9 @@ public class HealthPickup : MonoBehaviour
 
             if (playerHealthController && playerHealthController.Health < playerHealthController.MaxHealth)
             {
+                // pickup SFX:
+                AudioManager.instance.PlaySFX(sfxIndex: 5);
+
                 PlayerHealthController.instance.HealPlayer(healAmount);
 
                 // detach the parent canvas from ITS parent (the pickup object) or it'll get desroyed with it:

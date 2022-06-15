@@ -1074,7 +1074,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &848497433
 PrefabInstance:
@@ -7197,6 +7197,22 @@ PrefabInstance:
       propertyPath: jumpForce
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 5693718991320861118, guid: 1d9fd10e1478ab2459a92f7ea4a0e0e1, type: 3}
+      propertyPath: dashUnlocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693718991320861118, guid: 1d9fd10e1478ab2459a92f7ea4a0e0e1, type: 3}
+      propertyPath: ballModeUnlocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693718991320861118, guid: 1d9fd10e1478ab2459a92f7ea4a0e0e1, type: 3}
+      propertyPath: dropBombsUnlocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693718991320861118, guid: 1d9fd10e1478ab2459a92f7ea4a0e0e1, type: 3}
+      propertyPath: doubleJumpUnlocked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5693718991320861119, guid: 1d9fd10e1478ab2459a92f7ea4a0e0e1, type: 3}
       propertyPath: maxHealth
       value: 10
@@ -7316,7 +7332,7 @@ Transform:
   - {fileID: 1469934021}
   - {fileID: 353297686}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1727467882
 GameObject:
@@ -7497,6 +7513,10 @@ PrefabInstance:
     - target: {fileID: 5392626989447004709, guid: e53c7d8623fe0f74b9a9c33057ffbb9a, type: 3}
       propertyPath: m_Name
       value: Level Objects
+      objectReference: {fileID: 0}
+    - target: {fileID: 8685436420446527202, guid: e53c7d8623fe0f74b9a9c33057ffbb9a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8685436420500948329, guid: e53c7d8623fe0f74b9a9c33057ffbb9a, type: 3}
       propertyPath: m_Size.x

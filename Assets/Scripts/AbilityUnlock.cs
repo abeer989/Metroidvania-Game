@@ -20,6 +20,9 @@ public class AbilityUnlock : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            // pickup SFX:
+            AudioManager.instance.PlaySFX(sfxIndex: 5);
+
             // on triggering, the powerup will be unlocked in accordance with the set enum value:
             PlayerAbilityTracker abilityTracker = other.GetComponentInParent<PlayerAbilityTracker>();
 
@@ -28,20 +31,24 @@ public class AbilityUnlock : MonoBehaviour
                 case AbilityType.double_jump:
                     abilityTracker.doubleJumpUnlocked = true;
                     unlockText.SetText("DOUBLE JUMP UNLOCKED!");
+                    PlayerPrefs.SetInt("double_jump_unlocked", 1);
                     break;
 
                 case AbilityType.dash:
                     abilityTracker.dashUnlocked = true;
                     unlockText.SetText("DASH UNLOCKED!");
+                    PlayerPrefs.SetInt("dash_unlocked", 1);
                     break;
 
                 case AbilityType.ball_mode:
                     unlockText.SetText("BALL MODE UNLOCKED!");
+                    PlayerPrefs.SetInt("ball_mode_unlocked", 1);
                     abilityTracker.ballModeUnlocked = true;
                     break;
 
                 case AbilityType.drop_bombs:
                     unlockText.SetText("BOMB DROP UNLOCKED!");
+                    PlayerPrefs.SetInt("drop_bombs_unlocked", 1);
                     abilityTracker.dropBombsUnlocked = true;
                     break;
 

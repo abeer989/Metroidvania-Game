@@ -22,6 +22,9 @@ public class BulletController : MonoBehaviour
         if (impactFX)
             Instantiate(impactFX, transform.position, Quaternion.identity);
 
+        // bullet impact sound:
+        AudioManager.instance.PlaySFX(sfxIndex: 3, adjust: true);
+
         Destroy(gameObject);
     }
 

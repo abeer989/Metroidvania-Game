@@ -42,7 +42,14 @@ public class BossHealthController : MonoBehaviour
         {
             health = 0;
             boss1.EndBossBattle();
+
+            // boss death sound:
+            AudioManager.instance.PlaySFX(0);
         }
+
+        else
+            // boss hit sound:
+            AudioManager.instance.PlaySFX(1);
 
         bossHealthBar.value = health;
     }

@@ -39,7 +39,9 @@ public class PlayerHealthController : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
-        UIController.instance.UpdateHealth(currentHealth: health, maxHealth: maxHealth);
+
+        if (UIController.instance && UIController.instance.gameObject.activeInHierarchy)
+            UIController.instance.UpdateHealth(currentHealth: health, maxHealth: maxHealth); 
     }
 
     private void Update()
@@ -90,14 +92,18 @@ public class PlayerHealthController : MonoBehaviour
                 health = 0;
 
                 if (playerDeathFX)
-                    Instantiate(playerDeathFX, transform.position, Quaternion.identity); 
+                    Instantiate(playerDeathFX, transform.position, Quaternion.identity);
 
+                AudioManager.instance.PlaySFX(sfxIndex: 8);
                 RespawnController.instance.CallRespawnCR();
             }
 
             else
+            {
+                AudioManager.instance.PlaySFX(sfxIndex: 11, adjust: true);
                 // when the player is hit once, set the inv timer to max value:
                 invCounter = invTime; 
+            }
         }
     }
 
