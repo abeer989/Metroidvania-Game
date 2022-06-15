@@ -5,10 +5,7 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] int newGameSceneIndex;
 
-    void Start()
-    {
-        
-    }
+    void Start() => AudioManager.instance.PlayMainMenuMusic();
 
     public void NewGame() => SceneManager.LoadScene(newGameSceneIndex);
 

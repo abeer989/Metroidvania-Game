@@ -57,6 +57,8 @@ public class BossBattle1 : MonoBehaviour
 
         shotCounter = timeBetweenShotsPhase1;
         activeCounter = activeTime;
+
+        AudioManager.instance.PlayBossMusic();
     }
 
     private void Update()
@@ -347,5 +349,7 @@ public class BossBattle1 : MonoBehaviour
 
         foreach (BossBullet bullet in bossBulletsActive)
             Destroy(bullet.gameObject);
+
+        AudioManager.instance.PlayLevelMusic();
     }
 }

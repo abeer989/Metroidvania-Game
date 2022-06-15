@@ -13,6 +13,8 @@ public class CameraController : MonoBehaviour
 
         halfHeight = Camera.main.orthographicSize;
         halfWidth = halfHeight * Camera.main.aspect;
+
+        AudioManager.instance.PlayLevelMusic();
     }
 
     void Update()

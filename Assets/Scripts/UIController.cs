@@ -68,7 +68,19 @@ public class UIController : MonoBehaviour
             PauseUnpause();
     }
 
-    public void MainMenu() => SceneManager.LoadScene(mainMenuSceneIndex);
+    public void MainMenu()
+    {
+        Destroy(PlayerHealthController.instance.gameObject);
+        PlayerHealthController.instance = null;              
+        
+        Destroy(RespawnController.instance.gameObject);
+        RespawnController.instance = null;
+
+        Destroy(gameObject);
+        instance = null;
+
+        SceneManager.LoadScene(mainMenuSceneIndex);
+    }
 
     public void PauseUnpause()
     {

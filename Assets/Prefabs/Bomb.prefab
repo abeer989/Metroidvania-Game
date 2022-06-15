@@ -119,8 +119,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToExplode: 1
-  blastRange: 1.5
+  blastRange: 2
+  enemyDamageAmount: 3
   explosionFX: {fileID: 8966055947958508454, guid: 05f1668f6cbb79c4b8b411f61bd53315, type: 3}
   whatIsDestructible:
     serializedVersion: 2
     m_Bits: 512
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 32768

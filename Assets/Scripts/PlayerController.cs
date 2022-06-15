@@ -5,13 +5,15 @@ public class PlayerController : MonoBehaviour
     // Serialized fields:
     [Header("Physics")]
     [SerializeField] Rigidbody2D RB;
-    [SerializeField] Transform groundcheck;
+    [SerializeField] Transform groundCheck;
+    [SerializeField] Transform ceilingCheck;
     [SerializeField] Animator standingSpriteAnimator;
     [SerializeField] Animator ballSpriteAnimator;
 
     [Space]
-    [Header("Standing & Ball Mode")]
+    [Header("Standing, Ball & Shoot Up Mode")]
     [SerializeField] GameObject standing;
+    //[SerializeField] GameObject shootUp;
     [SerializeField] GameObject ball;
 
     [Space]
@@ -126,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
                 // the value saved in isOnGround will be determined by drawing a invisible circle which, when it'll overlap with
                 // the ground, will return a true/false value:
-                isOnGround = Physics2D.OverlapCircle(point: groundcheck.position, radius: .2f, layerMask: whatIsGround);
+                isOnGround = Physics2D.OverlapCircle(point: groundCheck.position, radius: .2f, layerMask: whatIsGround);
 
                 // ===================================== JUMPING =====================================
                 // mapped to the space button                     // if the player has already jumped and double jumpe ability has been unlocked:
@@ -208,6 +210,26 @@ public class PlayerController : MonoBehaviour
             #endregion
 
             #region Shooting
+
+            #region Commented Shoot Up Code
+            //Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //mousePosition.z = 0;
+
+            //if (mousePosition.y > ceilingCheck.position.y + 2)
+            //{
+            //    standing.SetActive(false);
+            //    //ball.SetActive(false);
+            //    shootUp.SetActive(true);
+            //}
+
+            //else
+            //{
+            //    standing.SetActive(true);
+            //    ball.SetActive(false);
+            //    shootUp.SetActive(false);
+            //} 
+            #endregion
+
             if (Input.GetButtonDown("Fire1"))
             {
                 if (standing.activeSelf)

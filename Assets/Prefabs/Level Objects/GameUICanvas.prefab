@@ -965,8 +965,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abb8f3d6eaeeea44eb20e554fd298427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGamePaused: 0
   mainMenuSceneIndex: 0
-  pauseScreen: {fileID: 0}
+  pauseScreen: {fileID: 1596950313}
   healthBar: {fileID: 7686258253089988001}
   fadeScreen: {fileID: 7686258252561806949}
   checkpointText: {fileID: 1554773067}
@@ -1217,6 +1218,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenuButton
       objectReference: {fileID: 0}
+    - target: {fileID: 3482565448226821987, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482565448226821987, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482565448226821987, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7686258253097490525}
+    - target: {fileID: 3482565448226821987, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482565448226821987, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482565448226821987, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482565448226821987, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
 --- !u!224 &886592039676145480 stripped
@@ -1322,6 +1351,34 @@ PrefabInstance:
     - target: {fileID: 3482565447773645402, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
       propertyPath: m_Name
       value: ResumeButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482565448226821987, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482565448226821987, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482565448226821987, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7686258253097490525}
+    - target: {fileID: 3482565448226821987, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482565448226821987, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseUnpause
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482565448226821987, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482565448226821987, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
