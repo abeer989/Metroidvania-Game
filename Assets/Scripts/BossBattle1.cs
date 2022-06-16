@@ -8,8 +8,11 @@ public class BossBattle1 : MonoBehaviour
     [SerializeField] GameObject bossShotPrefab;
     [SerializeField] Animator animator;
 
+    [Header("Boss PlayerPrefs Key")]
+    [SerializeField] string bossPPKey;
+
     [Space]
-    [SerializeField] Transform[] spawnPoints; 
+    [SerializeField] Transform[] spawnPoints;
 
     [Space]
     [SerializeField] float camMoveSpeed;
@@ -350,6 +353,7 @@ public class BossBattle1 : MonoBehaviour
         foreach (BossBullet bullet in bossBulletsActive)
             Destroy(bullet.gameObject);
 
+        PlayerPrefs.SetInt(bossPPKey, 1);
         AudioManager.instance.PlayLevelMusic();
     }
 }

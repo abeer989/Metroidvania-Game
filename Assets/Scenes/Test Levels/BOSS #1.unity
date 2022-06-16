@@ -752,6 +752,7 @@ MonoBehaviour:
   firePoint: {fileID: 1230010583}
   bossShotPrefab: {fileID: 4607793673170279564, guid: 328a6be8331334149823d6071849fa2c, type: 3}
   animator: {fileID: 771708163}
+  bossPPKey: elantra
   spawnPoints:
   - {fileID: 261262506}
   - {fileID: 1727467883}
@@ -783,7 +784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossHealthBar: {fileID: 469098371}
   boss1: {fileID: 475782937}
-  health: 30
+  health: 1
 --- !u!4 &545179134 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4517113391933174722, guid: 6dc38fc1be8b3454192561b998c45876, type: 3}
@@ -6657,6 +6658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossBattle: {fileID: 475782935}
+  bossPPKey: elantra
 --- !u!61 &1250153073
 BoxCollider2D:
   m_ObjectHideFlags: 0
