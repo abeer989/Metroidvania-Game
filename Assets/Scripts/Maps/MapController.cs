@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class MapController : MonoBehaviour
 {
@@ -33,6 +33,8 @@ public class MapController : MonoBehaviour
 
     public void ActivateMap(int mapIndex)
     {
+        // entering values in the inspector, starting from one, so the value is being corrected here
+        // by subtracting 1 to avoid out of range exceptions:
         mapIndex -= 1;
 
         if (mapIndex < 0)

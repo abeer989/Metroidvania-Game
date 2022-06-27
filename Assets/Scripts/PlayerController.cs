@@ -11,9 +11,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Animator ballSpriteAnimator;
 
     [Space]
-    [Header("Standing, Ball & Shoot Up Mode")]
+    [Header("Modes")]
     [SerializeField] GameObject standing;
-    //[SerializeField] GameObject shootUp;
+    [SerializeField] GameObject crouch;
     [SerializeField] GameObject ball;
 
     [Space]
@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour
     [Space]
     [SerializeField] BulletController bulletPrefab;
     [SerializeField] GameObject bombPrefab;
-    [SerializeField] Transform firePoint;
+    [SerializeField] Transform standingFirepoint;
+    [SerializeField] Transform crouchingFirepoint;
     [SerializeField] Transform bombPoint;
 
     [Header("Floats")]
@@ -50,13 +51,13 @@ public class PlayerController : MonoBehaviour
     float ballCounter;
     bool isOnGround;
     bool canDoubleJump;
-    bool canMove;
+    bool completeMovementLock;
 
     // Public properties:
     public bool CanMove
     {
-        get { return canMove; }
-        set { canMove = value; }
+        get { return completeMovementLock; }
+        set { completeMovementLock = value; }
     }
 
     public Animator StandingSpriteAnimator
@@ -71,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        canMove = true;
+        completeMovementLock = true;
         playerAbilityTracker = GetComponent<PlayerAbilityTracker>();
     }
 
@@ -80,86 +81,91 @@ public class PlayerController : MonoBehaviour
         if (!UIController.instance.isGamePaused)
         {
             #region Movement
-            if (canMove)
+            if (completeMovementLock)
             {
-                // ===================================== MOVING (LEFT/RIGHT) =====================================:
-                //--> Dashing:
-                if (dashReachargeCounter > 0)
-                    dashReachargeCounter -= Time.deltaTime;
-
-                else
+                // movement only allowed if the player isn't crouched.
+                // will update later with crouch animation:
+                if (!crouch.activeSelf)
                 {
-                    // if RMB is pressed, player is standing & dash ability has been unlocked:
-                    if (Input.GetButtonDown("Fire2") && standing.activeSelf && playerAbilityTracker.dashUnlocked)
-                    {
-                        dashCounter = dashTime;
-                        ShowAfterImage();
+                    // ===================================== MOVING (LEFT/RIGHT) =====================================:
+                    //--> Dashing:
+                    if (dashReachargeCounter > 0)
+                        dashReachargeCounter -= Time.deltaTime;
 
-                        // dash SFX:
-                        AudioManager.instance.PlaySFX(sfxIndex: 7, adjust: true);
-                    }
-                }
-
-                if (dashCounter > 0)
-                {
-                    dashCounter -= Time.deltaTime;
-                    RB.velocity = new Vector2(dashSpeed * transform.localScale.x, RB.velocity.y);
-
-                    // --> Showing After-images:
-                    afterImageCounter -= Time.deltaTime;
-                    if (afterImageCounter <= 0)
-                        ShowAfterImage();
-
-                    dashReachargeCounter = dashWait; // when the player has dashed once, don't let them dash again immediately.
-                                                     // instead, have a recharge timer in place
-                }
-
-                // --> Move normally if the player isn't dashing already:
-                else
-                {
-                    // Input.GetAxisRaw used to get immediate snappy movement (without gradual smoothing)
-                    float xMovement = Input.GetAxisRaw("Horizontal");
-                    RB.velocity = new Vector2(x: xMovement * moveSpeed, y: RB.velocity.y);
-
-                    // Flipping character when dir. is changed by adjusting its localScale:
-                    if (RB.velocity.x < 0)
-                        transform.localScale = new Vector3(-1, 1, 1);
-
-                    else if (RB.velocity.x > 0)
-                        transform.localScale = Vector3.one;
-                }
-
-                // the value saved in isOnGround will be determined by drawing a invisible circle which, when it'll overlap with
-                // the ground, will return a true/false value:
-                isOnGround = Physics2D.OverlapCircle(point: groundCheck.position, radius: .2f, layerMask: whatIsGround);
-
-                // ===================================== JUMPING =====================================
-                // mapped to the space button                     // if the player has already jumped and double jumpe ability has been unlocked:
-                if (Input.GetButtonDown("Jump") && (isOnGround || (canDoubleJump && playerAbilityTracker.doubleJumpUnlocked)))
-                {
-                    // if the player is on the ground, they can double jump:
-                    if (isOnGround)
-                    {
-                        canDoubleJump = true;
-
-                        // jump SFX:
-                        AudioManager.instance.PlaySFX(sfxIndex: 12, adjust: true);
-                    }
-
-                    // but not in the air or they'll keep jumping infinitely:
                     else
                     {
-                        canDoubleJump = false;
-                        standingSpriteAnimator.SetTrigger("doubleJump");
+                        // if RMB is pressed, player is standing & dash ability has been unlocked:
+                        if (Input.GetButtonDown("Fire2") && standing.activeSelf && playerAbilityTracker.dashUnlocked)
+                        {
+                            dashCounter = dashTime;
+                            ShowAfterImage();
 
-                        // DJ SFX:
-                        AudioManager.instance.PlaySFX(sfxIndex: 9, adjust: true);
+                            // dash SFX:
+                            AudioManager.instance.PlaySFX(sfxIndex: 7, adjust: true);
+                        }
                     }
 
-                    RB.velocity = new Vector2(RB.velocity.x, jumpForce);
+                    if (dashCounter > 0)
+                    {
+                        dashCounter -= Time.deltaTime;
+                        RB.velocity = new Vector2(dashSpeed * transform.localScale.x, RB.velocity.y);
+
+                        // --> Showing After-images:
+                        afterImageCounter -= Time.deltaTime;
+                        if (afterImageCounter <= 0)
+                            ShowAfterImage();
+
+                        dashReachargeCounter = dashWait; // when the player has dashed once, don't let them dash again immediately.
+                                                         // instead, have a recharge timer in place
+                    }
+
+                    // --> Move normally if the player isn't dashing already:
+                    else
+                    {
+                        // Input.GetAxisRaw used to get immediate snappy movement (without gradual smoothing)
+                        float xMovement = Input.GetAxisRaw("Horizontal");
+                        RB.velocity = new Vector2(x: xMovement * moveSpeed, y: RB.velocity.y);
+
+                        // Flipping character when dir. is changed by adjusting its localScale:
+                        if (RB.velocity.x < 0)
+                            transform.localScale = new Vector3(-1, 1, 1);
+
+                        else if (RB.velocity.x > 0)
+                            transform.localScale = Vector3.one;
+                    }
+
+                    // the value saved in isOnGround will be determined by drawing a invisible circle which, when it'll overlap with
+                    // the ground, will return a true/false value:
+                    isOnGround = Physics2D.OverlapCircle(point: groundCheck.position, radius: .2f, layerMask: whatIsGround);
+
+                    // ===================================== JUMPING =====================================
+                    // mapped to the space button                     // if the player has already jumped and double jumpe ability has been unlocked:
+                    if (Input.GetButtonDown("Jump") && (isOnGround || (canDoubleJump && playerAbilityTracker.doubleJumpUnlocked)))
+                    {
+                        // if the player is on the ground, they can double jump:
+                        if (isOnGround)
+                        {
+                            canDoubleJump = true;
+
+                            // jump SFX:
+                            AudioManager.instance.PlaySFX(sfxIndex: 12, adjust: true);
+                        }
+
+                        // but not in the air or they'll keep jumping infinitely:
+                        else
+                        {
+                            canDoubleJump = false;
+                            standingSpriteAnimator.SetTrigger("doubleJump");
+
+                            // DJ SFX:
+                            AudioManager.instance.PlaySFX(sfxIndex: 9, adjust: true);
+                        }
+
+                        RB.velocity = new Vector2(RB.velocity.x, jumpForce);
+                    } 
                 }
 
-                // ===================================== BALL/STANDING MODE =====================================:
+                // ===================================== BALL/STANDING/CROUCH MODE =====================================:
                 if (!ball.activeSelf)
                 {
                     float yMovement = Input.GetAxisRaw("Vertical");
@@ -175,9 +181,25 @@ public class PlayerController : MonoBehaviour
                             standing.SetActive(false);
 
                             // ball SFX:
-                            // pickup SFX:
                             AudioManager.instance.PlaySFX(sfxIndex: 6);
                         }
+                    }
+
+                    // --> CROUCH:
+                    else if (Input.GetKeyDown(KeyCode.C) && !crouch.activeSelf)
+                    {
+                        Debug.Log("crouch");
+                        ball.SetActive(false);
+                        standing.SetActive(false);
+                        crouch.SetActive(true);
+                    }
+
+                    else if (Input.GetKeyDown(KeyCode.C) && crouch.activeSelf)
+                    {
+                        Debug.Log("stand");
+                        ball.SetActive(false);
+                        standing.SetActive(true);
+                        crouch.SetActive(false);
                     }
 
                     else
@@ -250,15 +272,20 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButtonDown("Fire1"))
             {
-                if (standing.activeSelf)
+                if (standing.activeSelf || crouch.activeSelf)
                 {
-                    // the bullet is going to be flipped WRT to the player's dir., as well:
-                    Instantiate(bulletPrefab, firePoint.position, firePoint.rotation).moveDir = new Vector2(transform.localScale.x, 0);
+                    if (standing.activeSelf)
+                    {
+                        // the bullet is going to be flipped WRT to the player's dir., as well:
+                        Instantiate(bulletPrefab, standingFirepoint.position, standingFirepoint.rotation).moveDir = new Vector2(transform.localScale.x, 0);
+                        standingSpriteAnimator.SetTrigger("shotFired"); 
+                    }
+
+                    else if (crouch.activeSelf)
+                        Instantiate(bulletPrefab, crouchingFirepoint.position, crouchingFirepoint.rotation).moveDir = new Vector2(transform.localScale.x, 0);
 
                     // bullet SFX:
                     AudioManager.instance.PlaySFX(sfxIndex: 14, adjust: true);
-
-                    standingSpriteAnimator.SetTrigger("shotFired");
                 }
 
                 // if the player's in ball mode, the LMB will drop bombs:
