@@ -74,7 +74,10 @@ public class UIController : MonoBehaviour
         PlayerHealthController.instance = null;              
         
         Destroy(RespawnController.instance.gameObject);
-        RespawnController.instance = null;
+        RespawnController.instance = null;        
+        
+        Destroy(MapController.instance.gameObject);
+        MapController.instance = null;
 
         Destroy(gameObject);
         instance = null;
