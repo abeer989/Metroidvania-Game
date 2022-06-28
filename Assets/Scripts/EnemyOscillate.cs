@@ -14,6 +14,11 @@ public class EnemyOscillate : MonoBehaviour
     int currentTargetedPointIndex;
     float waitCounter;
 
+    public Transform[] MovePoints
+    {
+        get { return movePoints; }
+    }
+
     private void OnEnable()
     {
         waitCounter = waitTime;
@@ -53,11 +58,11 @@ public class EnemyOscillate : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        if (movePoints.Length > 0)
-        {
-            Destroy(movePoints[0].transform.parent.gameObject);
-        }
-    }
+    //private void OnDestroy()
+    //{
+    //    if (movePoints.Length > 0)
+    //    {
+    //        Destroy(movePoints[0].transform.parent.gameObject);
+    //    }
+    //}
 }

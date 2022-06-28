@@ -188,18 +188,28 @@ public class PlayerController : MonoBehaviour
                     // --> CROUCH:
                     else if (Input.GetKeyDown(KeyCode.C) && !crouch.activeSelf)
                     {
-                        Debug.Log("crouch");
                         ball.SetActive(false);
                         standing.SetActive(false);
                         crouch.SetActive(true);
                     }
 
-                    else if (Input.GetKeyDown(KeyCode.C) && crouch.activeSelf)
+                    else if (crouch.activeSelf)
                     {
-                        Debug.Log("stand");
-                        ball.SetActive(false);
-                        standing.SetActive(true);
-                        crouch.SetActive(false);
+                        float crouchedHorizontalMovement = Input.GetAxisRaw("Horizontal");
+
+                        if (Input.GetKeyDown(KeyCode.C))
+                        {
+                            ball.SetActive(false);
+                            standing.SetActive(true);
+                            crouch.SetActive(false); 
+                        }
+
+                        // pressing left or right while crouched:
+                        if (crouchedHorizontalMovement == 1)
+                            transform.localScale = Vector3.one;
+
+                        else if (crouchedHorizontalMovement == -1)
+                            transform.localScale = new Vector3(-1, 1, 1);
                     }
 
                     else

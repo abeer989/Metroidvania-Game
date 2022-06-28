@@ -4,10 +4,16 @@ public class EnemyHealthController : MonoBehaviour
 {
     [SerializeField] GameObject deathFX;
     [SerializeField] int maxHealth;
-    
+
+    EnemyOscillate oscillateComp;
+
     int health;
 
-    private void OnEnable() => health = maxHealth;
+    private void OnEnable()
+    {
+        health = maxHealth;
+        oscillateComp = GetComponent<EnemyOscillate>();
+    }
 
     public void DamageEnemy(int damage)
     {
@@ -20,6 +26,12 @@ public class EnemyHealthController : MonoBehaviour
 
             // enemy explode sound:
             AudioManager.instance.PlaySFX(sfxIndex: 4);
+
+            if (oscillateComp)
+            {
+                if (oscillateComp.MovePoints.Length > 0)
+                    Destroy(oscillateComp.MovePoints[0].transform.parent.gameObject);
+            }
 
             Destroy(gameObject);
         }

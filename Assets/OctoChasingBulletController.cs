@@ -14,7 +14,7 @@ public class OctoChasingBulletController : MonoBehaviour
 
     private void Update()
     {
-        if (player)
+        if (player.gameObject.activeSelf)
         {
             // MOVING TOWARD THE PLAYER:
             //transform.position += -transform.right * moveSpeed * Time.deltaTime;
@@ -31,10 +31,15 @@ public class OctoChasingBulletController : MonoBehaviour
             // to turn the enemy toward the player at a graceful speed:
             transform.rotation = targetRotation;
         }
+
+        else
+            Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Destroy(gameObject); 
+        
         if (player)
         {
             if (other.CompareTag("Player"))
@@ -44,11 +49,13 @@ public class OctoChasingBulletController : MonoBehaviour
                 PlayerHealthController.instance.TakeDamage(damageDone);
             }
 
-            if (impactFX)
-                Instantiate(impactFX, transform.position, Quaternion.identity);
-
             AudioManager.instance.PlaySFX(sfxIndex: 3, adjust: true);
-            Destroy(gameObject); 
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (impactFX)
+            Instantiate(impactFX, transform.position, Quaternion.identity);
     }
 }
