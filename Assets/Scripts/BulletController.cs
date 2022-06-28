@@ -4,9 +4,11 @@ public class BulletController : MonoBehaviour
 {
     public Vector2 moveDir;
 
-    [SerializeField] float bulletSpeed;
     [SerializeField] Rigidbody2D RB;
     [SerializeField] GameObject impactFX;
+
+    [Space]
+    [SerializeField] float bulletSpeed;
     [SerializeField] int damageDone;
 
     void Update() => RB.velocity = moveDir * bulletSpeed;

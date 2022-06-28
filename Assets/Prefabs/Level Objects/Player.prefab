@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 40129597}
   - component: {fileID: 40129596}
   - component: {fileID: 40129598}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crouching
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -832,7 +832,7 @@ GameObject:
   - component: {fileID: 5994912172313535219}
   m_Layer: 8
   m_Name: CeilingCheck
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
