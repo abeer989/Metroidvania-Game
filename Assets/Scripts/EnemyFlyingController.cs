@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[SelectionBase]
 public class EnemyFlyingController : MonoBehaviour
 {
     [SerializeField] Animator animator;
@@ -46,5 +47,10 @@ public class EnemyFlyingController : MonoBehaviour
         }
 
         animator.SetBool("isChasing", isChasing);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, chaseStartRange);
     }
 }

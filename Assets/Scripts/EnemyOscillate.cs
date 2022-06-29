@@ -57,12 +57,4 @@ public class EnemyOscillate : MonoBehaviour
             }
         }
     }
-
-    //private void OnDestroy()
-    //{
-    //    if (movePoints.Length > 0)
-    //    {
-    //        Destroy(movePoints[0].transform.parent.gameObject);
-    //    }
-    //}
 }

@@ -6,7 +6,7 @@ public class OctoShootingController : MonoBehaviour
     [SerializeField] Transform firePoint;
 
     [SerializeField] float fireTime;
-    [SerializeField] float shootingRange;
+    [SerializeField] float fireRange;
 
     Transform player;
     float fireCounter;
@@ -30,14 +30,14 @@ public class OctoShootingController : MonoBehaviour
 
             float distance = Vector3.Distance(transform.position, player.position);
 
-            if (distance < shootingRange)
+            if (distance < fireRange)
                 Shoot();
         }
     }
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(firePoint.position, shootingRange);
+        Gizmos.DrawWireSphere(firePoint.position, fireRange);
         Gizmos.color = Color.red;
     }
 

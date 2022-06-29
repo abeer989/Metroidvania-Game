@@ -89,17 +89,20 @@ public class PlayerHealthController : MonoBehaviour
 
             if (health <= 0)
             {
+                // when health reaches zero -- death and respawn:
                 health = 0;
 
                 if (playerDeathFX)
                     Instantiate(playerDeathFX, transform.position, Quaternion.identity);
 
+                // death SFX:
                 AudioManager.instance.PlaySFX(sfxIndex: 8);
                 RespawnController.instance.CallRespawnCR();
             }
 
             else
             {
+                // damage taken SFX:
                 AudioManager.instance.PlaySFX(sfxIndex: 11, adjust: true);
                 // when the player is hit once, set the inv timer to max value:
                 invCounter = invTime; 

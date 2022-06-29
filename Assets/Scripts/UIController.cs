@@ -13,15 +13,29 @@ public class UIController : MonoBehaviour
 
     [Space]
     [SerializeField] GameObject pauseScreen;
+    public GameObject fullScreenMap;
+    public GameObject miniMap;
+
+    [Space]
     [SerializeField] Slider healthBar;
     [SerializeField] Image fadeScreen;
     [SerializeField] TMPro.TMP_Text checkpointText;
-    
+
     [Space]
     [SerializeField] float fadeSpeed;
 
     bool fadingToBlack;
     bool fadingFromBlack;
+
+    public GameObject MiniMap
+    {
+        get { return miniMap; }
+    }
+
+    public GameObject FullscreenMap
+    {
+        get { return fullScreenMap; }
+    }
 
     private void Awake()
     {
@@ -71,11 +85,11 @@ public class UIController : MonoBehaviour
     public void MainMenu()
     {
         Destroy(PlayerHealthController.instance.gameObject);
-        PlayerHealthController.instance = null;              
-        
+        PlayerHealthController.instance = null;
+
         Destroy(RespawnController.instance.gameObject);
-        RespawnController.instance = null;        
-        
+        RespawnController.instance = null;
+
         Destroy(MapController.instance.gameObject);
         MapController.instance = null;
 

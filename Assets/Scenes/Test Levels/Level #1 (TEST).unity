@@ -831,6 +831,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1596950315, guid: 4f70268348fc7a84a841af3419a4de13, type: 3}
+      propertyPath: m_Color.a
+      value: 0.98039216
+      objectReference: {fileID: 0}
     - target: {fileID: 7686258251645758504, guid: 4f70268348fc7a84a841af3419a4de13, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -22895,6 +22899,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 745484110343869663, guid: f95e3ec079ba02f49a8920714a826209, type: 3}
+      propertyPath: chaseStartRange
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f95e3ec079ba02f49a8920714a826209, type: 3}
 --- !u!4 &1397896342 stripped
@@ -23472,14 +23480,6 @@ PrefabInstance:
     - target: {fileID: 5693718991320861115, guid: 1d9fd10e1478ab2459a92f7ea4a0e0e1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5693718991320861117, guid: 1d9fd10e1478ab2459a92f7ea4a0e0e1, type: 3}
-      propertyPath: afterImageLifeTime
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5693718991320861117, guid: 1d9fd10e1478ab2459a92f7ea4a0e0e1, type: 3}
-      propertyPath: timeBetweenAfterImages
-      value: 0.025
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d9fd10e1478ab2459a92f7ea4a0e0e1, type: 3}
@@ -24157,6 +24157,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 419060493, guid: 7ee7c2c62ce8ef846864fc46a10c22ec, type: 3}
+      propertyPath: fireRange
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 419060493, guid: 7ee7c2c62ce8ef846864fc46a10c22ec, type: 3}
       propertyPath: shootingRange
       value: 8
       objectReference: {fileID: 0}
@@ -24217,10 +24221,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2740267989295639181, guid: 595161f123a9876469bb7c7d3513ac58, type: 3}
-      propertyPath: levelMapToActivate
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5687828830813644496, guid: 595161f123a9876469bb7c7d3513ac58, type: 3}
       propertyPath: m_RootOrder
       value: 3

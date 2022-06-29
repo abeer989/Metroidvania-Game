@@ -394,8 +394,8 @@ MonoBehaviour:
   jumpForce: 21
   dashSpeed: 50
   dashTime: 0.2
-  afterImageLifeTime: 0.5
-  timeBetweenAfterImages: 0.033
+  afterImageLifeTime: 0.2
+  timeBetweenAfterImages: 0.025
   dashWait: 0.5
   waitToBall: 0.5
   whatIsGround:
@@ -416,6 +416,7 @@ MonoBehaviour:
   playerSprites:
   - {fileID: 5693718991898353367}
   - {fileID: 5693718993025584688}
+  - {fileID: 40129596}
   playerDeathFX: {fileID: 6897129779693637871, guid: fbe073d0a64eb8b42b1bd4d6a808ba78, type: 3}
   maxHealth: 5
   invTime: 1.5
@@ -432,10 +433,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d45ff724b7a0f664d9e05441c1fde8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doubleJumpUnlocked: 1
-  dashUnlocked: 1
-  ballModeUnlocked: 1
-  dropBombsUnlocked: 1
+  doubleJumpUnlocked: 0
+  dashUnlocked: 0
+  ballModeUnlocked: 0
+  dropBombsUnlocked: 0
 --- !u!50 &5693718991320861116
 Rigidbody2D:
   serializedVersion: 4
