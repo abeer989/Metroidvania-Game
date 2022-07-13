@@ -24217,6 +24217,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 665973619, guid: 595161f123a9876469bb7c7d3513ac58, type: 3}
+      propertyPath: maxZoom
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 5687828830813644496, guid: 595161f123a9876469bb7c7d3513ac58, type: 3}
       propertyPath: m_RootOrder
       value: 3

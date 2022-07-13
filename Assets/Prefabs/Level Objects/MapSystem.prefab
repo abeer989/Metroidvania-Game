@@ -1630,6 +1630,7 @@ MonoBehaviour:
   moveModifier: 1
   maxZoom: 100
   minZoom: 20
+  defaultZoomLevel: 80
 --- !u!1 &1509336802
 GameObject:
   m_ObjectHideFlags: 0

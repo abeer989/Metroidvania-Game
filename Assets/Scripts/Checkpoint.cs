@@ -18,16 +18,17 @@ public class Checkpoint : MonoBehaviour
             UIController.instance.CallShowCheckpointTextCR(); 
             RespawnController.instance.SetSpawnPoint(transform.position);
 
-            StartCoroutine(DisableCheckpointCR());
+            //StartCoroutine(DisableCheckpointCR());
+            Destroy(gameObject);
         }
     }
 
-    IEnumerator DisableCheckpointCR()
-    {
-        GetComponent<Collider2D>().enabled = false;
-        yield return new WaitForSeconds(10);
-        GetComponent<Collider2D>().enabled = true;
+    //IEnumerator DisableCheckpointCR()
+    //{
+    //    GetComponent<Collider2D>().enabled = false;
+    //    yield return new WaitForSeconds(10);
+    //    GetComponent<Collider2D>().enabled = true;
 
-        yield break;
-    }
+    //    yield break;
+    //}
 }

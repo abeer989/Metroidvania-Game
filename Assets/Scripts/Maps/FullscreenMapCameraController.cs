@@ -11,15 +11,13 @@ public class FullscreenMapCameraController : MonoBehaviour
     [SerializeField] float moveModifier;
     [SerializeField] float maxZoom;
     [SerializeField] float minZoom;
+    [SerializeField] float defaultZoomLevel;
 
-    float defaultZoomLevel;
-
-    private void Start() => defaultZoomLevel = camComp.orthographicSize;
 
     private void OnEnable()
     {
         transform.position = minimapCam.transform.position;
-        //camComp.orthographicSize = defaultZoomLevel;
+        camComp.orthographicSize = defaultZoomLevel;
     }
 
     private void Update()
