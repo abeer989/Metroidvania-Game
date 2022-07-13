@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!UIController.instance.isGamePaused/* && !UIController.instance.FullscreenMap.activeInHierarchy*/)
+        if (!UIController.instance.isGamePaused && !UIController.instance.FullscreenMap.activeInHierarchy)
         {
             #region Movement
             if (completeMovementLock)
