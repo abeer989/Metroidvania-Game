@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour
                     }
 
                     // --> CROUCH:
-                    else if (Input.GetKeyDown(KeyCode.C) && !crouch.activeSelf)
+                    else if (Input.GetKeyDown(KeyCode.C) && !crouch.activeSelf && isOnGround)
                     {
                         ball.SetActive(false);
                         standing.SetActive(false);

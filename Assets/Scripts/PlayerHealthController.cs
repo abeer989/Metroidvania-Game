@@ -10,18 +10,21 @@ public class PlayerHealthController : MonoBehaviour
     [SerializeField] GameObject playerDeathFX;
 
     [Space]
-    [SerializeField] int maxHealth;
+    [SerializeField] float maxHealth;
     [SerializeField] float invTime;
     [SerializeField] float flashTime;
 
     float invCounter;
     float flashCounter;
-    int health;
+    float OTDamageCounter;
+    float OTDamage;
+    float health;
+    bool isPoisoned;
 
     // Public properties:
-    public int Health { get { return health; } }    
+    public float Health { get { return health; } }    
     
-    public int MaxHealth { get { return maxHealth; } }
+    public float MaxHealth { get { return maxHealth; } }
 
     private void Awake()
     {
@@ -76,9 +79,25 @@ public class PlayerHealthController : MonoBehaviour
             TakeDamage(2);
             RespawnController.instance.CallRespawnCR(_refillHealth: false);
         }
+
+        // Taking damage over time:
+        if (OTDamageCounter > 0)
+        {
+            foreach (SpriteRenderer sr in playerSprites) sr.color = Color.green;
+            isPoisoned = true;
+
+            OTDamageCounter -= Time.deltaTime;
+            TakeDamage(damage: OTDamage);
+
+            if (OTDamageCounter <= 0 && isPoisoned)
+            {
+                foreach (SpriteRenderer sr in playerSprites) sr.color = Color.white;
+                isPoisoned = false;
+            }
+        }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         // the invincibility counter will only be zero when the player hasn't taken any damage recently,
         // and if it IS zero, the player will take damage:
@@ -108,6 +127,19 @@ public class PlayerHealthController : MonoBehaviour
                 invCounter = invTime; 
             }
         }
+    }
+
+    public void ResetOTDamage()
+    {
+        OTDamageCounter = 0;
+        foreach (SpriteRenderer sr in playerSprites) sr.color = Color.white;
+        isPoisoned = false;
+    }
+
+    public void TakeDamageOverTime(float OTDamageTime, float _OTDamage)
+    {
+        OTDamageCounter = OTDamageTime;
+        OTDamage = _OTDamage;
     }
 
     public void RefillHealth()

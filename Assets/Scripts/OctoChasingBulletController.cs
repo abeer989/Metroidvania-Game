@@ -6,7 +6,8 @@ public class OctoChasingBulletController : MonoBehaviour
     [SerializeField] GameObject impactFX;
 
     [SerializeField] float bulletSpeed;
-    [SerializeField] int damageDone;
+    [SerializeField] float damageTime;
+    [SerializeField] float damageDone;
 
     Transform player;
 
@@ -46,7 +47,8 @@ public class OctoChasingBulletController : MonoBehaviour
             {
                 // inflicting damage normally, for now.
                 // Will implement a TakeDamageOverTime() method in the PlayerHealthController later...
-                PlayerHealthController.instance.TakeDamage(damageDone);
+                //PlayerHealthController.instance.TakeDamage(damageDone);
+                PlayerHealthController.instance.TakeDamageOverTime(OTDamageTime: damageTime, _OTDamage: damageDone);
             }
 
             AudioManager.instance.PlaySFX(sfxIndex: 3, adjust: true);

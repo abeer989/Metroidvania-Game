@@ -116,7 +116,7 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void UpdateHealth(int currentHealth, int maxHealth)
+    public void UpdateHealth(float currentHealth, float maxHealth)
     {
         healthBar.maxValue = maxHealth;
         healthBar.value = currentHealth;

@@ -40,6 +40,7 @@ public class RespawnController : MonoBehaviour
     IEnumerator RespawnCR(bool refillHeath = true)
     {
         player.SetActive(false);
+        PlayerHealthController.instance.ResetOTDamage();
 
         yield return new WaitForSeconds(respawnDelay);
 

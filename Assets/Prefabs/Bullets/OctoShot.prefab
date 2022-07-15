@@ -161,8 +161,8 @@ MonoBehaviour:
   RB: {fileID: 1692681960270316136}
   impactFX: {fileID: 4154270611324864591, guid: 1b0b7e622b118b04b89d82158819c958, type: 3}
   bulletSpeed: 6
-  turnSpeed: 2
-  damageDone: 1
+  damageTime: 6
+  damageDone: 0.2
 --- !u!114 &7695803040793116563
 MonoBehaviour:
   m_ObjectHideFlags: 0
