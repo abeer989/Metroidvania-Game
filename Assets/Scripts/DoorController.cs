@@ -18,6 +18,9 @@ public class DoorController : MonoBehaviour
 
     private void Update()
     {
+        if(player == null)
+            player = PlayerHealthController.instance.GetComponent<PlayerController>();
+
         // calc. the distance betsween the player and the door:
         float distance = Vector3.Distance(transform.position, player.transform.position);
 
