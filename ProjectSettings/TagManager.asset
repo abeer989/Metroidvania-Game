@@ -52,6 +52,9 @@ TagManager:
   - name: Ground
     uniqueID: 36394019
     locked: 0
+  - name: FX
+    uniqueID: 396792761
+    locked: 0
   - name: Water
     uniqueID: 3615894067
     locked: 0

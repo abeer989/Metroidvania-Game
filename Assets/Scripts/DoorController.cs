@@ -6,6 +6,7 @@ public class DoorController : MonoBehaviour
 {
     [SerializeField] Transform exitPoint;
     [SerializeField] Animator animator;
+
     [SerializeField] int sceneToLoadIndex;
     [SerializeField] float openRange;
     [SerializeField] float playerExitSpeed;
