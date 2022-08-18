@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3801808214426964114}
   - component: {fileID: 3801808214426964113}
   m_Layer: 0
-  m_Name: AMLoader
+  m_Name: EssentialsLoader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,4 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eb7b9204c83a8c4f840623e048b69b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 5693718991320861119, guid: 1d9fd10e1478ab2459a92f7ea4a0e0e1, type: 3}
+  playerPosition: {x: 0, y: 0, z: 0}
+  UICPrefab: {fileID: 7686258253097490525, guid: 4f70268348fc7a84a841af3419a4de13, type: 3}
   AMPrefab: {fileID: 427296029140844718, guid: e1b6d528053314e47a17c21021917961, type: 3}
+  respawnControllerPrefab: {fileID: 1818570677374471461, guid: 7f7c76aad4179764db041ccfd9cd8c2e, type: 3}
+  mapControllerPrefab: {fileID: 7895978952396432388, guid: 595161f123a9876469bb7c7d3513ac58, type: 3}

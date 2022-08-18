@@ -418,7 +418,7 @@ MonoBehaviour:
   - {fileID: 5693718993025584688}
   - {fileID: 40129596}
   playerDeathFX: {fileID: 6897129779693637871, guid: fbe073d0a64eb8b42b1bd4d6a808ba78, type: 3}
-  maxHealth: 5
+  maxHealth: 10
   invTime: 1.5
   flashTime: 0.1
 --- !u!114 &5693718991320861118

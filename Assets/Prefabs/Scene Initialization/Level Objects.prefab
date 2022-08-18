@@ -808,7 +808,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3801808214426964112, guid: 263bf33822537e64ab7d11d407ae4e20, type: 3}
       propertyPath: m_Name
-      value: AMLoader
+      value: EssentialsLoader
       objectReference: {fileID: 0}
     - target: {fileID: 3801808214426964114, guid: 263bf33822537e64ab7d11d407ae4e20, type: 3}
       propertyPath: m_RootOrder
