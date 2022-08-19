@@ -46,18 +46,18 @@ public class PlayerController : MonoBehaviour
     PlayerAbilityTracker playerAbilityTracker;
 
     float dashCounter;
-    float dashReachargeCounter;
+    float dashRechargeCounter;
     float afterImageCounter;
     float ballCounter;
     bool isOnGround;
     bool canDoubleJump;
-    bool completeMovementLock;
+    bool canMove;
 
     // Public properties:
     public bool CanMove
     {
-        get { return completeMovementLock; }
-        set { completeMovementLock = value; }
+        get { return canMove; }
+        set { canMove = value; }
     }
 
     public Animator StandingSpriteAnimator
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        completeMovementLock = true;
+        canMove = true;
         playerAbilityTracker = GetComponent<PlayerAbilityTracker>();
     }
 
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
         if (!UIController.instance.isGamePaused && !UIController.instance.FullscreenMap.activeInHierarchy)
         {
             #region Movement
-            if (completeMovementLock)
+            if (canMove)
             {
                 // movement only allowed if the player isn't crouched.
                 // will update later with crouch animation:
@@ -89,8 +89,8 @@ public class PlayerController : MonoBehaviour
                 {
                     // ===================================== MOVING (LEFT/RIGHT) =====================================:
                     //--> Dashing:
-                    if (dashReachargeCounter > 0)
-                        dashReachargeCounter -= Time.deltaTime;
+                    if (dashRechargeCounter > 0)
+                        dashRechargeCounter -= Time.deltaTime;
 
                     else
                     {
@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
                         if (afterImageCounter <= 0)
                             ShowAfterImage();
 
-                        dashReachargeCounter = dashWait; // when the player has dashed once, don't let them dash again immediately.
+                        dashRechargeCounter = dashWait; // when the player has dashed once, don't let them dash again immediately.
                                                          // instead, have a recharge timer in place
                     }
 
@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
                     isOnGround = Physics2D.OverlapCircle(point: groundCheck.position, radius: .2f, layerMask: whatIsGround);
 
                     // ===================================== JUMPING =====================================
-                    // mapped to the space button                     // if the player has already jumped and double jumpe ability has been unlocked:
+                    // mapped to the space button                     // if the player has already jumped and double jump ability has been unlocked:
                     if (Input.GetButtonDown("Jump") && (isOnGround || (canDoubleJump && playerAbilityTracker.doubleJumpUnlocked)))
                     {
                         // if the player is on the ground, they can double jump:
