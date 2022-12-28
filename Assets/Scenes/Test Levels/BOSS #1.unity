@@ -6590,7 +6590,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -679073229
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -6679,6 +6679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 2
+  damagePlayerEvent: {fileID: 11400000, guid: a7f03a8fe6aa5f243b0343e40fd40e23, type: 2}
 --- !u!4 &1476801207 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8179703594089476612, guid: dcc2d863f29aec342aaa103c4a05e369, type: 3}

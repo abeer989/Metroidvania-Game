@@ -116,10 +116,15 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void UpdateHealth(float currentHealth, float maxHealth)
+    public void UpdateHealth(float currentHealth/*, float maxHealth*/)
+    {
+        //healthBar.maxValue = maxHealth;
+        healthBar.value = currentHealth;
+    }
+
+    public void UpdateMaxHealth(float maxHealth)
     {
         healthBar.maxValue = maxHealth;
-        healthBar.value = currentHealth;
     }
 
     // Set bool values via thse functions that will determine the fading in/out:

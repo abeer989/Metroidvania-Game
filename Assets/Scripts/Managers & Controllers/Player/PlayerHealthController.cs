@@ -1,4 +1,6 @@
 using UnityEngine;
+using Sirenix.OdinInspector;
+using ScriptableEvents.Events;
 
 public class PlayerHealthController : MonoBehaviour
 {
@@ -26,6 +28,10 @@ public class PlayerHealthController : MonoBehaviour
     
     public float MaxHealth { get { return maxHealth; } }
 
+    [Title("Scriptable Events")]
+    [SerializeField] FloatScriptableEvent healthUIUpdateEvent; // Calls UIController.UpdateHealth(float currentHealth). Listener: UIGameCanvas
+    [SerializeField] FloatScriptableEvent maxHealthUIUpdateEvent; // Calls UIController.UpdateMaxHealth(float maxHealth). Listener: UIGameCanvas
+
     private void Awake()
     {
         // Singleton:
@@ -42,9 +48,11 @@ public class PlayerHealthController : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
+        maxHealthUIUpdateEvent.Raise(maxHealth);
+        healthUIUpdateEvent.Raise(health);
 
-        if (UIController.instance && UIController.instance.gameObject.activeInHierarchy)
-            UIController.instance.UpdateHealth(currentHealth: health, maxHealth: maxHealth); 
+        //if (UIController.instance && UIController.instance.gameObject.activeInHierarchy)
+        //    UIController.instance.UpdateHealth(currentHealth: health, maxHealth: maxHealth);
     }
 
     private void Update()
@@ -104,7 +112,8 @@ public class PlayerHealthController : MonoBehaviour
         if (invCounter <= 0)
         {
             health -= damage;
-            UIController.instance.UpdateHealth(currentHealth: health, maxHealth: maxHealth);
+            healthUIUpdateEvent.Raise(health);
+            //UIController.instance.UpdateHealth(currentHealth: health, maxHealth: maxHealth);
 
             if (health <= 0)
             {
@@ -145,16 +154,29 @@ public class PlayerHealthController : MonoBehaviour
     public void RefillHealth()
     {
         health = maxHealth;
-        UIController.instance.UpdateHealth(currentHealth: health, maxHealth: maxHealth);
+        healthUIUpdateEvent.Raise(health);
+        //UIController.instance.UpdateHealth(currentHealth: health, maxHealth: maxHealth);
     }
 
     public void HealPlayer(int healAmount)
     {
-        health += healAmount;
+        if (health < maxHealth)
+        {
+            health += healAmount;
 
-        if (health >= maxHealth)
-            health = maxHealth;
+            if (health >= maxHealth)
+                health = maxHealth;
 
-        UIController.instance.UpdateHealth(currentHealth: health, maxHealth: maxHealth);
+            healthUIUpdateEvent.Raise(health);
+            //UIController.instance.UpdateHealth(currentHealth: health, maxHealth: maxHealth); 
+        }
     }
+
+    #region Test Functions
+    [ContextMenu("Take 1 Damage")]
+    public void TakeXDamage()
+    {
+        TakeDamage(1);
+    }
+    #endregion
 }

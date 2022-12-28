@@ -1,4 +1,6 @@
 using UnityEngine;
+using Sirenix.OdinInspector;
+using ScriptableEvents.Events;
 
 public class BossBullet : MonoBehaviour
 {
@@ -7,6 +9,9 @@ public class BossBullet : MonoBehaviour
 
     [SerializeField] float moveSpeed;
     [SerializeField] int damageAmount;
+
+    [Title("Scriptable Events")]
+    [SerializeField] FloatScriptableEvent damagePlayerEvent; // Calls PlayerHealthController.TakeDamage(float damage). Listener: GameEventsListener
 
     private void Start()
     {
@@ -28,7 +33,7 @@ public class BossBullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
-            PlayerHealthController.instance.TakeDamage(damageAmount);
+            damagePlayerEvent.Raise(damageAmount);
 
         if (impactFX)
             Instantiate(impactFX, transform.position, transform.rotation); 

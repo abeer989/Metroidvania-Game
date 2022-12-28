@@ -171,3 +171,4 @@ MonoBehaviour:
   impactFX: {fileID: 5507823137583610999, guid: b1f062cfb5c90164089576be365fc2c7, type: 3}
   moveSpeed: 10
   damageAmount: 1
+  damagePlayerEvent: {fileID: 11400000, guid: a7f03a8fe6aa5f243b0343e40fd40e23, type: 2}

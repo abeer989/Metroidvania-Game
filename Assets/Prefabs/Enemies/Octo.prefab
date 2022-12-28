@@ -333,6 +333,7 @@ MonoBehaviour:
   destroyOnContact: 0
   enemyDestroyFX: {fileID: 6897129779693637871, guid: fbe073d0a64eb8b42b1bd4d6a808ba78, type: 3}
   damageAmount: 1
+  damagePlayerEvent: {fileID: 11400000, guid: a7f03a8fe6aa5f243b0343e40fd40e23, type: 2}
 --- !u!70 &5731980114620258604
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -372,6 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e10b3888b07ee04f877c36d50715f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilityType: 1
   pickupFX: {fileID: 8170810565262085160, guid: 1d94941f215dece478d37f24565e27d2, type: 3}
-  unlockText: {fileID: 1765768330}
+  pickupIndicatorText: {fileID: 1765768330}
+  abilityType: 1
+  abilityTrackerSO: {fileID: 11400000, guid: b7dae1398f0112148b29bf2d545fd3d6, type: 2}

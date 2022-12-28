@@ -1,4 +1,6 @@
 using UnityEngine;
+using Sirenix.OdinInspector;
+using ScriptableEvents.Events;
 
 public class DamagePlayer : MonoBehaviour
 {
@@ -8,6 +10,9 @@ public class DamagePlayer : MonoBehaviour
     [SerializeField] GameObject enemyDestroyFX;
 
     [SerializeField] int damageAmount;
+
+    [Title("Scriptable Events")]
+    [SerializeField] FloatScriptableEvent damagePlayerEvent; // Calls PlayerHealthController.TakeDamage(float damage). Listener: GameEventsListener
 
     // Damage the player in all cases (collision & trigger):
     private void OnTriggerEnter2D(Collider2D other)
@@ -24,7 +29,7 @@ public class DamagePlayer : MonoBehaviour
 
     void ApplyDamage()
     {
-        PlayerHealthController.instance.TakeDamage(damageAmount);
+        damagePlayerEvent.Raise(damageAmount);
 
         if (destroyOnContact)
         {

@@ -1,26 +1,31 @@
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class PlayerController : MonoBehaviour
 {
     // Serialized fields:
-    [Header("Physics")]
-    [SerializeField] Rigidbody2D RB;
-    [SerializeField] Transform groundCheck;
-    [SerializeField] Transform ceilingCheck;
-    [SerializeField] Animator standingSpriteAnimator;
-    [SerializeField] Animator ballSpriteAnimator;
+    [BoxGroup("Physics")] [SerializeField] Rigidbody2D RB;
+    [BoxGroup("Physics")] [SerializeField] Transform groundCheck;
+    [BoxGroup("Physics")] [SerializeField] Transform ceilingCheck;
+    [BoxGroup("Physics")] [SerializeField] Animator standingSpriteAnimator;
+    [BoxGroup("Physics")] [SerializeField] Animator ballSpriteAnimator;
 
-    [Space]
-    [Header("Modes")]
-    [SerializeField] GameObject standing;
-    [SerializeField] GameObject crouch;
-    [SerializeField] GameObject ball;
+    [BoxGroup("Modes")] [SerializeField] GameObject standing;
+    [BoxGroup("Modes")] [SerializeField] GameObject crouch;
+    [BoxGroup("Modes")] [SerializeField] GameObject ball;
 
-    [Space]
-    [Header("After-image")]
-    [SerializeField] SpriteRenderer playerSR;
-    [SerializeField] SpriteRenderer afterImageSR;
-    [SerializeField] Color afterImageColor;
+    [BoxGroup("After-image")] [SerializeField] SpriteRenderer playerSR;
+    [BoxGroup("After-image")] [SerializeField] SpriteRenderer afterImageSR;
+    [BoxGroup("After-image")] [SerializeField] Color afterImageColor;
+
+    [BoxGroup("Floats")] [SerializeField] float moveSpeed;
+    [BoxGroup("Floats")] [SerializeField] float jumpForce;
+    [BoxGroup("Floats")] [SerializeField] float dashSpeed;
+    [BoxGroup("Floats")] [SerializeField] float dashTime;
+    [BoxGroup("Floats")] [SerializeField] float afterImageLifeTime;
+    [BoxGroup("Floats")] [SerializeField] float timeBetweenAfterImages;
+    [BoxGroup("Floats")] [SerializeField] float dashWait;
+    [BoxGroup("Floats")] [SerializeField] float waitToBall;
 
     [Space]
     [SerializeField] BulletController bulletPrefab;
@@ -29,17 +34,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform crouchingFirepoint;
     [SerializeField] Transform bombPoint;
 
-    [Header("Floats")]
-    [SerializeField] float moveSpeed;
-    [SerializeField] float jumpForce;
-    [SerializeField] float dashSpeed;
-    [SerializeField] float dashTime;
-    [SerializeField] float afterImageLifeTime;
-    [SerializeField] float timeBetweenAfterImages;
-    [SerializeField] float dashWait;
-    [SerializeField] float waitToBall;
-
-    [Space]
+    [Title("LayerMasks")]
     [SerializeField] LayerMask whatIsGround;
 
     // Private fields:
@@ -95,7 +90,7 @@ public class PlayerController : MonoBehaviour
                     else
                     {
                         // if RMB is pressed, player is standing & dash ability has been unlocked:
-                        if (Input.GetButtonDown("Fire2") && standing.activeSelf && playerAbilityTracker.dashUnlocked)
+                        if (Input.GetButtonDown("Fire2") && standing.activeSelf && playerAbilityTracker.abilityTrackerSO.DashUnlocked)
                         {
                             dashCounter = dashTime;
                             ShowAfterImage();
@@ -140,7 +135,7 @@ public class PlayerController : MonoBehaviour
 
                     // ===================================== JUMPING =====================================
                     // mapped to the space button                     // if the player has already jumped and double jump ability has been unlocked:
-                    if (Input.GetButtonDown("Jump") && (isOnGround || (canDoubleJump && playerAbilityTracker.doubleJumpUnlocked)))
+                    if (Input.GetButtonDown("Jump") && (isOnGround || (canDoubleJump && playerAbilityTracker.abilityTrackerSO.DoubleJumpUnlocked)))
                     {
                         // if the player is on the ground, they can double jump:
                         if (isOnGround)
@@ -170,7 +165,7 @@ public class PlayerController : MonoBehaviour
                 {
                     float yMovement = Input.GetAxisRaw("Vertical");
 
-                    if (yMovement < -.9f && playerAbilityTracker.ballModeUnlocked)
+                    if (yMovement < -.9f && playerAbilityTracker.abilityTrackerSO.BallModeUnlocked)
                     {
                         ballCounter -= Time.deltaTime;
 
@@ -299,7 +294,7 @@ public class PlayerController : MonoBehaviour
                 }
 
                 // if the player's in ball mode, the LMB will drop bombs:
-                else if (ball.activeSelf && playerAbilityTracker.dropBombsUnlocked)
+                else if (ball.activeSelf && playerAbilityTracker.abilityTrackerSO.DropBombsUnlocked)
                 {
                     Instantiate(bombPrefab, bombPoint.position, bombPoint.rotation);
 

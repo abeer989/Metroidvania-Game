@@ -49,9 +49,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31d4f30d642fa974386aa27cf881d70e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 2
   destroyOnContact: 1
   enemyDestroyFX: {fileID: 8966055947958508454, guid: 05f1668f6cbb79c4b8b411f61bd53315, type: 3}
+  damageAmount: 2
+  damagePlayerEvent: {fileID: 11400000, guid: a7f03a8fe6aa5f243b0343e40fd40e23, type: 2}
 --- !u!114 &745484110343869648
 MonoBehaviour:
   m_ObjectHideFlags: 0
