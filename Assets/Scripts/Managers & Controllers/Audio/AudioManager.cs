@@ -1,12 +1,20 @@
 using UnityEngine;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
-    [SerializeField] List<AudioSource> music;
-    [SerializeField] List<AudioSource> SFX;
+    [Title("Audio Clips")]
+    [SerializeField] List<AudioClip> musicClips;
+    [SerializeField] List<AudioClip> SFXClips;
+
+    [Title("Audio Sources")]
+    [SerializeField] AudioSource musicAudioSource;
+    [SerializeField] AudioSource SFXAudioSource;
+
+    int currentLevelMusicIndex = -1;
 
     private void Awake()
     {
@@ -21,35 +29,26 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void PlayMainMenuMusic()
+    public void PlayMusic(int index)
     {
-        music.ForEach(a => a.Stop());
-        music[0].Play(); // main menu music on 0th index
-    }    
-    
-    public void PlayLevelMusic()
-    {
-        if (!music[1].isPlaying)
+        if(index != currentLevelMusicIndex)
         {
-            music.ForEach(a => a.Stop());
-            music[1].Play(); // level music on 1st index 
+            musicAudioSource.Stop();
+            musicAudioSource.clip = musicClips[index];
+            musicAudioSource.loop = true;
+            musicAudioSource.Play();
+            currentLevelMusicIndex = index;
         }
-    }    
-    
-    public void PlayBossMusic()
-    {
-        music.ForEach(a => a.Stop());
-        music[2].Play(); // boss music on 2nd index
     }
 
-    public void PlaySFX(int sfxIndex, bool adjust = false)
+    public void PlaySFX(SFXData sfxData)
     {
-        if (adjust)
-            SFX[sfxIndex].pitch = Random.Range(1, 1.2f); 
+        if (sfxData.adjust)
+            SFXAudioSource.pitch = Random.Range(1, 1.2f);
 
-        if (SFX[sfxIndex].isPlaying)
-            SFX[sfxIndex].Stop();
+        if (SFXAudioSource.isPlaying)
+            SFXAudioSource.Stop();
 
-        SFX[sfxIndex].Play();
+        SFXAudioSource.PlayOneShot(SFXClips[sfxData.SFXIndex]);
     }
 }

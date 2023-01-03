@@ -128,3 +128,4 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 40960
+  sfxEvent: {fileID: 11400000, guid: a23a01bbc0dcc344090a116d3970cf0e, type: 2}

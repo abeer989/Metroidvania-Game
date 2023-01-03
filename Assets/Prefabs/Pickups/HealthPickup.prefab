@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupFX: {fileID: 7750586706707936598, guid: 135d1a7ccbae45549a428d94d3801f29, type: 3}
   pickupIndicatorText: {fileID: 4517113392488646817}
+  sfxEvent: {fileID: 11400000, guid: a23a01bbc0dcc344090a116d3970cf0e, type: 2}
   healAmount: 2
 --- !u!58 &4517113391933174723
 CircleCollider2D:

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
+using ScriptableEvents.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -36,6 +37,9 @@ public class PlayerController : MonoBehaviour
 
     [Title("LayerMasks")]
     [SerializeField] LayerMask whatIsGround;
+
+    [Title("Scriptable Events")]
+    [SerializeField] SFXDataScriptableEvent sfxEvent;
 
     // Private fields:
     PlayerAbilityTracker playerAbilityTracker;
@@ -96,7 +100,7 @@ public class PlayerController : MonoBehaviour
                             ShowAfterImage();
 
                             // dash SFX:
-                            AudioManager.instance.PlaySFX(sfxIndex: 7, adjust: true);
+                            sfxEvent.Raise(new SFXData(_sfxIndex: 7, _adj: true));
                         }
                     }
 
@@ -143,7 +147,7 @@ public class PlayerController : MonoBehaviour
                             canDoubleJump = true;
 
                             // jump SFX:
-                            AudioManager.instance.PlaySFX(sfxIndex: 12, adjust: true);
+                            sfxEvent.Raise(new SFXData(_sfxIndex: 12, _adj: true));
                         }
 
                         // but not in the air or they'll keep jumping infinitely:
@@ -153,7 +157,7 @@ public class PlayerController : MonoBehaviour
                             standingSpriteAnimator.SetTrigger("doubleJump");
 
                             // DJ SFX:
-                            AudioManager.instance.PlaySFX(sfxIndex: 9, adjust: true);
+                            sfxEvent.Raise(new SFXData(_sfxIndex: 9, _adj: true));
                         }
 
                         RB.velocity = new Vector2(RB.velocity.x, jumpForce);
@@ -176,7 +180,7 @@ public class PlayerController : MonoBehaviour
                             standing.SetActive(false);
 
                             // ball SFX:
-                            AudioManager.instance.PlaySFX(sfxIndex: 6);
+                            sfxEvent.Raise(new SFXData(_sfxIndex: 6));
                         }
                     }
 
@@ -227,7 +231,7 @@ public class PlayerController : MonoBehaviour
                             standing.SetActive(true);
 
                             // stand SFX:
-                            AudioManager.instance.PlaySFX(sfxIndex: 10);
+                            sfxEvent.Raise(new SFXData(_sfxIndex: 10));
                         }
                     }
 
@@ -290,7 +294,7 @@ public class PlayerController : MonoBehaviour
                         Instantiate(bulletPrefab, crouchingFirepoint.position, crouchingFirepoint.rotation).moveDir = new Vector2(transform.localScale.x, 0);
 
                     // bullet SFX:
-                    AudioManager.instance.PlaySFX(sfxIndex: 14, adjust: true);
+                    sfxEvent.Raise(new SFXData(_sfxIndex: 14, _adj: true));
                 }
 
                 // if the player's in ball mode, the LMB will drop bombs:
@@ -299,7 +303,7 @@ public class PlayerController : MonoBehaviour
                     Instantiate(bombPrefab, bombPoint.position, bombPoint.rotation);
 
                     // mine drop SFX:
-                    AudioManager.instance.PlaySFX(sfxIndex: 13, adjust: true);
+                    sfxEvent.Raise(new SFXData(_sfxIndex: 13, _adj: true));
                 }
             }
             #endregion 

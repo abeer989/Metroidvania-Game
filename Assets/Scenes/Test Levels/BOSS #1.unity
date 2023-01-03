@@ -738,6 +738,7 @@ MonoBehaviour:
   phase2Threshold: 0
   phase3Threshold: 0
   winObjectsParent: {fileID: 2097781642}
+  musicEvent: {fileID: 11400000, guid: d4932d71ca26a404f963f5f78520fb6b, type: 2}
 --- !u!114 &475782938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -753,6 +754,7 @@ MonoBehaviour:
   bossHealthBar: {fileID: 469098371}
   boss1: {fileID: 475782937}
   health: 1
+  sfxEvent: {fileID: 11400000, guid: a23a01bbc0dcc344090a116d3970cf0e, type: 2}
 --- !u!1 &747205925
 GameObject:
   m_ObjectHideFlags: 0

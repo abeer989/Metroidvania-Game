@@ -374,5 +374,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupFX: {fileID: 8170810565262085160, guid: 1d94941f215dece478d37f24565e27d2, type: 3}
   pickupIndicatorText: {fileID: 1765768330}
+  sfxEvent: {fileID: 11400000, guid: a23a01bbc0dcc344090a116d3970cf0e, type: 2}
   abilityType: 1
   abilityTrackerSO: {fileID: 11400000, guid: b7dae1398f0112148b29bf2d545fd3d6, type: 2}

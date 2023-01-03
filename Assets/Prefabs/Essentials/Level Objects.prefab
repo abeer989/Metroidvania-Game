@@ -760,6 +760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraBoundsBox: {fileID: 8685436420500948329}
+  musicEvent: {fileID: 11400000, guid: d4932d71ca26a404f963f5f78520fb6b, type: 2}
 --- !u!81 &8685436421687384641
 AudioListener:
   m_ObjectHideFlags: 0

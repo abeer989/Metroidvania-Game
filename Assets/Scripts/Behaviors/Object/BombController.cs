@@ -1,4 +1,6 @@
 using UnityEngine;
+using Sirenix.OdinInspector;
+using ScriptableEvents.Events;
 
 public class BombController : MonoBehaviour
 {
@@ -9,6 +11,9 @@ public class BombController : MonoBehaviour
     [SerializeField] LayerMask whatIsDestructible;
     [SerializeField] LayerMask whatIsEnemy;
 
+    [Title("Scriptable Events")]
+    [SerializeField] SFXDataScriptableEvent sfxEvent;
+
     void Update()
     {
         timeToExplode -= Time.deltaTime;
@@ -18,7 +23,7 @@ public class BombController : MonoBehaviour
             if (explosionFX)
                 Instantiate(explosionFX, transform.position, transform.rotation);
 
-            AudioManager.instance.PlaySFX(sfxIndex: 4, adjust: true);
+            sfxEvent.Raise(new SFXData(_sfxIndex: 4, _adj: true));
 
             Destroy(gameObject);
 

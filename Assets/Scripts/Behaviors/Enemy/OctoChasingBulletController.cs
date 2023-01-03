@@ -1,3 +1,5 @@
+using ScriptableEvents.Events;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class OctoChasingBulletController : MonoBehaviour
@@ -8,6 +10,9 @@ public class OctoChasingBulletController : MonoBehaviour
     [SerializeField] float bulletSpeed;
     [SerializeField] float damageTime;
     [SerializeField] float damageDone;
+
+    [Title("Scriptable Events")]
+    [SerializeField] SFXDataScriptableEvent sfxEvent;
 
     Transform player;
 
@@ -51,7 +56,7 @@ public class OctoChasingBulletController : MonoBehaviour
                 PlayerHealthController.instance.TakeDamageOverTime(OTDamageTime: damageTime, _OTDamage: damageDone);
             }
 
-            AudioManager.instance.PlaySFX(sfxIndex: 3, adjust: true);
+            sfxEvent.Raise(new SFXData(_sfxIndex: 3, _adj: true));
         }
     }
 

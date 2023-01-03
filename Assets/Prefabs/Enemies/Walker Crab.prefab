@@ -277,6 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathFX: {fileID: 8966055947958508454, guid: 05f1668f6cbb79c4b8b411f61bd53315, type: 3}
   maxHealth: 3
+  sfxEvent: {fileID: 11400000, guid: a23a01bbc0dcc344090a116d3970cf0e, type: 2}
 --- !u!114 &968779885534005474
 MonoBehaviour:
   m_ObjectHideFlags: 0

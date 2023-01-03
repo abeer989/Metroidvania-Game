@@ -101,10 +101,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: 1, y: 0}
-  bulletSpeed: 20
   RB: {fileID: 1692681960270316136}
   impactFX: {fileID: 8908626944924475233, guid: 280b87207f705b94eb937d67bb3bb159, type: 3}
+  bulletSpeed: 20
   damageDone: 1
+  sfxEvent: {fileID: 11400000, guid: a23a01bbc0dcc344090a116d3970cf0e, type: 2}
 --- !u!95 &1692681960270316141
 Animator:
   serializedVersion: 4

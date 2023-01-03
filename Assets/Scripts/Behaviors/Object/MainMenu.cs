@@ -1,3 +1,5 @@
+using ScriptableEvents.Events;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,11 +7,14 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] int newGameSceneIndex;
     [SerializeField] GameObject continueButton;
-    [SerializeField] PlayerAbilityTracker playerAbilityTracker;
+    //[SerializeField] PlayerAbilityTracker playerAbilityTracker;
+
+    [Title("Scriptable Events")]
+    [SerializeField] IntScriptableEvent musicEvent;
 
     void Start()
     {
-        AudioManager.instance.PlayMainMenuMusic();
+        musicEvent.Raise(0); // play main menu music
 
         if (PlayerPrefs.HasKey("continue_level_index"))
             continueButton.SetActive(true);

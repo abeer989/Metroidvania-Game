@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
+using ScriptableEvents.Events;
 
 public class BossHealthController : MonoBehaviour
 {
@@ -9,6 +11,9 @@ public class BossHealthController : MonoBehaviour
     [SerializeField] BossBattle1 boss1;
 
     [SerializeField] int health;
+
+    [Title("Scriptable Events")]
+    [SerializeField] SFXDataScriptableEvent sfxEvent;
 
     public int Health
     {
@@ -44,12 +49,12 @@ public class BossHealthController : MonoBehaviour
             boss1.EndBossBattle();
 
             // boss death sound:
-            AudioManager.instance.PlaySFX(0);
+            sfxEvent.Raise(new SFXData(_sfxIndex: 0));
         }
 
         else
             // boss hit sound:
-            AudioManager.instance.PlaySFX(1);
+            sfxEvent.Raise(new SFXData(_sfxIndex: 1));
 
         bossHealthBar.value = health;
     }

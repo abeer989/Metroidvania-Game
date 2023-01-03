@@ -163,6 +163,7 @@ MonoBehaviour:
   bulletSpeed: 6
   damageTime: 6
   damageDone: 0.2
+  sfxEvent: {fileID: 11400000, guid: a23a01bbc0dcc344090a116d3970cf0e, type: 2}
 --- !u!114 &7695803040793116563
 MonoBehaviour:
   m_ObjectHideFlags: 0

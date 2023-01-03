@@ -12,6 +12,7 @@ public class BossBullet : MonoBehaviour
 
     [Title("Scriptable Events")]
     [SerializeField] FloatScriptableEvent damagePlayerEvent; // Calls PlayerHealthController.TakeDamage(float damage). Listener: GameEventsListener
+    [SerializeField] SFXDataScriptableEvent sfxEvent;
 
     private void Start()
     {
@@ -25,7 +26,7 @@ public class BossBullet : MonoBehaviour
         transform.rotation = targetRotation;
 
         // boss shot sound:
-        AudioManager.instance.PlaySFX(sfxIndex: 2, adjust: true);
+        sfxEvent.Raise(new SFXData(_sfxIndex: 2, _adj: true));
     }
 
     private void Update() => RB.velocity = -transform.right * moveSpeed;
@@ -41,6 +42,6 @@ public class BossBullet : MonoBehaviour
         Destroy(gameObject);
 
         // bullet impact sound:
-        AudioManager.instance.PlaySFX(sfxIndex: 3, adjust: true);
+        sfxEvent.Raise(new SFXData(_sfxIndex: 3, _adj: true));
     }
 }

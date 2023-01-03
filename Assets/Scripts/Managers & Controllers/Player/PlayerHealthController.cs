@@ -31,6 +31,7 @@ public class PlayerHealthController : MonoBehaviour
     [Title("Scriptable Events")]
     [SerializeField] FloatScriptableEvent healthUIUpdateEvent; // Calls UIController.UpdateHealth(float currentHealth). Listener: UIGameCanvas
     [SerializeField] FloatScriptableEvent maxHealthUIUpdateEvent; // Calls UIController.UpdateMaxHealth(float maxHealth). Listener: UIGameCanvas
+    [SerializeField] SFXDataScriptableEvent sfxEvent;
 
     private void Awake()
     {
@@ -124,14 +125,14 @@ public class PlayerHealthController : MonoBehaviour
                     Instantiate(playerDeathFX, transform.position, Quaternion.identity);
 
                 // death SFX:
-                AudioManager.instance.PlaySFX(sfxIndex: 8);
+                sfxEvent.Raise(new SFXData(_sfxIndex: 8));
                 RespawnController.instance.CallRespawnCR();
             }
 
             else
             {
                 // damage taken SFX:
-                AudioManager.instance.PlaySFX(sfxIndex: 11, adjust: true);
+                sfxEvent.Raise(new SFXData(_sfxIndex: 11, _adj: true));
                 // when the player is hit once, set the inv timer to max value:
                 invCounter = invTime; 
             }

@@ -1,4 +1,6 @@
 using UnityEngine;
+using Sirenix.OdinInspector;
+using ScriptableEvents.Events;
 
 public class BulletController : MonoBehaviour
 {
@@ -10,6 +12,9 @@ public class BulletController : MonoBehaviour
     [Space]
     [SerializeField] float bulletSpeed;
     [SerializeField] int damageDone;
+
+    [Title("Scriptable Events")]
+    [SerializeField] SFXDataScriptableEvent sfxEvent;
 
     void Update() => RB.velocity = moveDir * bulletSpeed;
 
@@ -25,7 +30,7 @@ public class BulletController : MonoBehaviour
             Instantiate(impactFX, transform.position, Quaternion.identity);
 
         // bullet impact sound:
-        AudioManager.instance.PlaySFX(sfxIndex: 3, adjust: true);
+        sfxEvent.Raise(new SFXData(_sfxIndex: 3, _adj: true));
 
         Destroy(gameObject);
     }

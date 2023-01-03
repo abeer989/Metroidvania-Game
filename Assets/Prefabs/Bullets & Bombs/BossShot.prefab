@@ -172,3 +172,4 @@ MonoBehaviour:
   moveSpeed: 10
   damageAmount: 1
   damagePlayerEvent: {fileID: 11400000, guid: a7f03a8fe6aa5f243b0343e40fd40e23, type: 2}
+  sfxEvent: {fileID: 11400000, guid: a23a01bbc0dcc344090a116d3970cf0e, type: 2}

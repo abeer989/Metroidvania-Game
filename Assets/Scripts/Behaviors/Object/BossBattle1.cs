@@ -1,4 +1,6 @@
 using UnityEngine;
+using Sirenix.OdinInspector;
+using ScriptableEvents.Events;
 
 public class BossBattle1 : MonoBehaviour
 {
@@ -35,6 +37,9 @@ public class BossBattle1 : MonoBehaviour
     [Header("Win Objects")]
     [SerializeField] GameObject winObjectsParent;
 
+    [Title("Scriptable Events")]
+    [SerializeField] IntScriptableEvent musicEvent;
+
     CameraController cameraController;
     Transform player;
     Transform currentTargetedPoint;
@@ -61,7 +66,7 @@ public class BossBattle1 : MonoBehaviour
         shotCounter = timeBetweenShotsPhase1;
         activeCounter = activeTime;
 
-        AudioManager.instance.PlayBossMusic();
+        musicEvent.Raise(2); // play boss music
     }
 
     private void Update()
@@ -354,6 +359,6 @@ public class BossBattle1 : MonoBehaviour
             Destroy(bullet.gameObject);
 
         PlayerPrefs.SetInt(bossPPKey, 1);
-        AudioManager.instance.PlayLevelMusic();
+        musicEvent.Raise(1); // play level music 
     }
 }

@@ -1,9 +1,14 @@
+using ScriptableEvents.Events;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
     [SerializeField] protected GameObject pickupFX;
     [SerializeField] protected TMPro.TMP_Text pickupIndicatorText;
+
+    [Title("Scriptable Events")]
+    [SerializeField] SFXDataScriptableEvent sfxEvent;
 
     protected virtual void OnPickup()
     {
@@ -21,6 +26,6 @@ public class Pickup : MonoBehaviour
         Destroy(pickupIndicatorText.transform.parent.gameObject, 1);
 
         // pickup SFX:
-        AudioManager.instance.PlaySFX(sfxIndex: 5);
+        sfxEvent.Raise(new SFXData(_sfxIndex: 5, _adj: true));
     }
 }

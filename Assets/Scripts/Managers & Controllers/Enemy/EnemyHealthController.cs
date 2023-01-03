@@ -1,9 +1,14 @@
 using UnityEngine;
+using Sirenix.OdinInspector;
+using ScriptableEvents.Events;
 
 public class EnemyHealthController : MonoBehaviour
 {
     [SerializeField] GameObject deathFX;
     [SerializeField] int maxHealth;
+
+    [Title("Scriptable Events")]
+    [SerializeField] SFXDataScriptableEvent sfxEvent;
 
     EnemyOscillate oscillateComp;
 
@@ -25,7 +30,7 @@ public class EnemyHealthController : MonoBehaviour
                 Instantiate(original: deathFX, position: gameObject.transform.position, rotation: Quaternion.identity);
 
             // enemy explode sound:
-            AudioManager.instance.PlaySFX(sfxIndex: 4);
+            sfxEvent.Raise(new SFXData(_sfxIndex: 4));
 
             if (oscillateComp)
             {

@@ -1,3 +1,5 @@
+using ScriptableEvents.Events;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -7,6 +9,9 @@ public class CameraController : MonoBehaviour
     private Transform player;
     private float halfHeight, halfWidth;
 
+    [Title("Scriptable Events")]
+    [SerializeField] IntScriptableEvent musicEvent;
+
     void Start()
     {
         player = PlayerHealthController.instance.transform;
@@ -14,7 +19,7 @@ public class CameraController : MonoBehaviour
         halfHeight = Camera.main.orthographicSize;
         halfWidth = halfHeight * Camera.main.aspect;
 
-        AudioManager.instance.PlayLevelMusic();
+        musicEvent.Raise(1); // play level music
     }
 
     void Update()
