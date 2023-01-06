@@ -7,16 +7,19 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] int newGameSceneIndex;
     [SerializeField] GameObject continueButton;
-    //[SerializeField] PlayerAbilityTracker playerAbilityTracker;
+    [SerializeField] PlayerController player;
 
     [Title("Scriptable Events")]
     [SerializeField] IntScriptableEvent musicEvent;
+
+    [Title("Game Data")]
+    [SerializeField] GamePersistentDataSO gameData;
 
     void Start()
     {
         musicEvent.Raise(0); // play main menu music
 
-        if (PlayerPrefs.HasKey("continue_level_index"))
+        if (gameData.ContinueGame)
             continueButton.SetActive(true);
     }
 
@@ -28,19 +31,13 @@ public class MainMenu : MonoBehaviour
 
     public void ContinueGame()
     {
-        int loadSceneIndex = PlayerPrefs.GetInt("continue_level_index", 1);
-        string loadPositionString = PlayerPrefs.GetString("continue_position");
-
+        // TODO: handle player pos. loading via ScriptableObject
         // loading scene & position:
-        SceneManager.LoadScene(loadSceneIndex);
+        SceneManager.LoadScene(gameData.LastSceneIndex);
 
-        Vector3 loadPosition = Vector3.zero;
-
-        if (!string.IsNullOrEmpty(loadPositionString))
-            loadPosition = StringToVector3(loadPositionString);
-
-        playerAbilityTracker.gameObject.SetActive(true);
-        playerAbilityTracker.transform.position = loadPosition;
+        Vector3 loadPosition = gameData.LastPlayerPos;
+        player.gameObject.SetActive(true);
+        player.transform.position = loadPosition;
 
         #region Old Abililty Loading (Using PlayerPrefs)
         // loading unlocked abilities:

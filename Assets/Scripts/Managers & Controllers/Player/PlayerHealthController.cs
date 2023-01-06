@@ -32,6 +32,7 @@ public class PlayerHealthController : MonoBehaviour
     [SerializeField] FloatScriptableEvent healthUIUpdateEvent; // Calls UIController.UpdateHealth(float currentHealth). Listener: UIGameCanvas
     [SerializeField] FloatScriptableEvent maxHealthUIUpdateEvent; // Calls UIController.UpdateMaxHealth(float maxHealth). Listener: UIGameCanvas
     [SerializeField] SFXDataScriptableEvent sfxEvent;
+    [SerializeField] BoolScriptableEvent respawnPlayerEvent;
 
     private void Awake()
     {
@@ -83,10 +84,10 @@ public class PlayerHealthController : MonoBehaviour
             }
         }
 
-        if (transform.position.y < -15)
+        if (transform.position.y < -15) // if player falls down
         {
             TakeDamage(2);
-            RespawnController.instance.CallRespawnCR(_refillHealth: false);
+            respawnPlayerEvent.Raise(false); // respawn player and don't restore health
         }
 
         // Taking damage over time:
@@ -126,7 +127,7 @@ public class PlayerHealthController : MonoBehaviour
 
                 // death SFX:
                 sfxEvent.Raise(new SFXData(_sfxIndex: 8));
-                RespawnController.instance.CallRespawnCR();
+                respawnPlayerEvent.Raise(true);
             }
 
             else

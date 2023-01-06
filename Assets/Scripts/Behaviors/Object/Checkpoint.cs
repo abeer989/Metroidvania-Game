@@ -1,9 +1,15 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using ScriptableEvents.Events;
+using Sirenix.OdinInspector;
 
 public class Checkpoint : MonoBehaviour
 {
+    [Title("Events")]
+    [SerializeField] Vector3ScriptableEvent setSpawnPointEvent;
+    [SerializeField] SimpleScriptableEvent showCheckpointTextUIEvent;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -15,8 +21,9 @@ public class Checkpoint : MonoBehaviour
             // from the main menu:
             PlayerPrefs.SetInt("continue_level_index", SceneManager.GetActiveScene().buildIndex);
             PlayerPrefs.SetString("continue_position", transform.position.ToString());
-            UIController.instance.CallShowCheckpointTextCR(); 
-            RespawnController.instance.SetSpawnPoint(transform.position);
+
+            showCheckpointTextUIEvent.Raise();
+            setSpawnPointEvent.Raise(transform.position);
 
             //StartCoroutine(DisableCheckpointCR());
             Destroy(gameObject);

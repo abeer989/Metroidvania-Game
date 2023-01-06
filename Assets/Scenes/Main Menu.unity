@@ -159,7 +159,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 524287
 --- !u!114 &61968098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,7 +243,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newGameSceneIndex: 1
   continueButton: {fileID: 1609749434}
-  player: {fileID: 1481180083}
+  player: {fileID: 1642248128}
+  musicEvent: {fileID: 11400000, guid: d4932d71ca26a404f963f5f78520fb6b, type: 2}
+  gameData: {fileID: 11400000, guid: 116f21fe6b1a94f47a789f73da6fefbc, type: 2}
 --- !u!1 &95302955
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,17 +928,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d9fd10e1478ab2459a92f7ea4a0e0e1, type: 3}
---- !u!114 &1481180083 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5693718991320861118, guid: 1d9fd10e1478ab2459a92f7ea4a0e0e1, type: 3}
-  m_PrefabInstance: {fileID: 1481180082}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d45ff724b7a0f664d9e05441c1fde8d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1556921207
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,6 +1017,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3482565447773645402, guid: ecbb5ee29dfc1cc40882546e47fc0fce, type: 3}
   m_PrefabInstance: {fileID: 524831388}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1642248128 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5693718991320861117, guid: 1d9fd10e1478ab2459a92f7ea4a0e0e1, type: 3}
+  m_PrefabInstance: {fileID: 1481180082}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9daa6bebb00362d49ba9e16ab1c4892a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1732531919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,6 +1058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit

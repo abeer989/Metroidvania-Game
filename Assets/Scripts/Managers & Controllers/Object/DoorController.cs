@@ -1,6 +1,8 @@
   using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using Sirenix.OdinInspector;
+using ScriptableEvents.Events;
 
 public class DoorController : MonoBehaviour
 {
@@ -10,6 +12,11 @@ public class DoorController : MonoBehaviour
     [SerializeField] int sceneToLoadIndex;
     [SerializeField] float openRange;
     [SerializeField] float playerExitSpeed;
+
+    [Title("Events")]
+    [SerializeField] Vector3ScriptableEvent setSpawnPointEvent; 
+    [SerializeField] SimpleScriptableEvent fadeToBlackEvent; 
+    [SerializeField] SimpleScriptableEvent fadeFromBlackEvent; 
 
     PlayerController player;
 
@@ -61,18 +68,18 @@ public class DoorController : MonoBehaviour
         player.StandingSpriteAnimator.enabled = false;
 
         // fade to black:
-        UIController.instance.SetFadeToBlack();
+        fadeToBlackEvent.Raise();
 
         yield return new WaitForSeconds(1.5f);
 
         // set spawn point:
-        RespawnController.instance.SetSpawnPoint(exitPoint.position);
+        setSpawnPointEvent.Raise(exitPoint.position);
         player.CanMove = true;
         player.StandingSpriteAnimator.enabled = true;
         SceneManager.LoadScene(sceneBuildIndex: sceneToLoadIndex);
-        
+
         // fade back from black:
-        UIController.instance.SetFadeFromBlack();
+        fadeFromBlackEvent.Raise();
 
         // save functionality...
         // saving what level the player entered last and at what position:

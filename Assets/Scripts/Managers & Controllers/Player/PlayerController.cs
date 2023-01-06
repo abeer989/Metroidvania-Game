@@ -1,6 +1,7 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using ScriptableEvents.Events;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -40,6 +41,9 @@ public class PlayerController : MonoBehaviour
 
     [Title("Scriptable Events")]
     [SerializeField] SFXDataScriptableEvent sfxEvent;
+
+    [Title("Game Data")]
+    [SerializeField] GamePersistentDataSO gameData;
 
     // Private fields:
     PlayerAbilityTracker playerAbilityTracker;
@@ -308,6 +312,13 @@ public class PlayerController : MonoBehaviour
             }
             #endregion 
         }
+    }
+
+    [ContextMenu("Save Player State")]
+    public void SaveState()
+    {
+        gameData.LastSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        gameData.LastPlayerPos = transform.position;
     }
 
     public void JumpOffPad(float jumpForce) => RB.velocity = new Vector2(RB.velocity.x, jumpForce);

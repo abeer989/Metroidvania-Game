@@ -140,7 +140,11 @@ public class UIController : MonoBehaviour
         fadingToBlack = false;
     }
 
-    public void CallShowCheckpointTextCR() => StartCoroutine(ShowCheckpointTextCR());
+    public void CallShowCheckpointTextCR()
+    {
+        //checkpointText.gameObject.transform.DOLocal
+        StartCoroutine(ShowCheckpointTextCR());
+    }
 
     IEnumerator ShowCheckpointTextCR()
     {
